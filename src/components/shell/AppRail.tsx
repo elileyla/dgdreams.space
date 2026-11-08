@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAccount, useDisconnect } from "wagmi";
@@ -8,6 +7,7 @@ import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { Wallet } from "lucide-react";
 
 import { PRIMARY_NAV } from "@/lib/nav";
+import { BrandMark } from "@/components/site/Brand";
 import MoreSheet, { MoreGlyph } from "@/components/shell/MoreSheet";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 
@@ -77,10 +77,10 @@ export default function AppRail() {
       {/* Logo */}
       <Link
         href="/"
-        aria-label="DGDreams"
-        className="flex items-center justify-center w-10 h-10 rounded-[12px] mb-3 transition-opacity hover:opacity-70"
+        aria-label="DGDreams — home"
+        className="group flex items-center justify-center w-10 h-10 rounded-[12px] mb-3 transition-opacity hover:opacity-80"
       >
-        <Image src="/logo.svg" alt="DGDreams" width={26} height={26} />
+        <BrandMark size={26} />
       </Link>
 
       {/* The destinations */}

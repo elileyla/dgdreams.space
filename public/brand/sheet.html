@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DGDreams — brand v2 · Orbit-D</title>
+<style>
+  :root{
+    --bg:#0D0C0B; --card:#171513; --line:#2A2724; --ink:#F7F5F2; --mut:#9A9488;
+    --accent:#C6F24E; --accent-deep:#56700A; --paper:#F7F5F2; --paper-line:#E5E0D9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:56px 28px 96px}
+  h1{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 10px}
+  h2{font-size:30px;margin:0 0 8px;letter-spacing:-.03em}
+  p.lead{color:var(--mut);margin:0 0 44px;line-height:1.65;max-width:64ch}
+  h3{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);font-weight:700;margin:52px 0 14px;border-top:1px solid var(--line);padding-top:18px}
+  .hero{background:linear-gradient(180deg,#171513,#0D0C0B);border:1px solid var(--line);border-radius:24px;padding:44px;display:flex;gap:34px;align-items:center;flex-wrap:wrap}
+  .hero img{width:132px;height:132px}
+  .hero .word img{width:min(460px,62vw)}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;min-height:170px}
+  .card.light{background:var(--paper);border-color:var(--paper-line);color:#12100E}
+  .card img{width:104px;height:104px}
+  .card .lbl{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-family:ui-monospace,Consolas,monospace}
+  .card.light .lbl{color:#7C7869}
+  .row{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+  .ico{display:flex;flex-direction:column;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .ico img{border-radius:22%}
+  .sw{display:flex;gap:12px;flex-wrap:wrap}
+  .chip{width:104px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .chip .c{height:76px}
+  .chip span{display:block;font:600 10.5px/1 ui-monospace,Consolas,monospace;padding:9px 10px;color:var(--mut)}
+  /* header mocks */
+  .mock{border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .bar{display:flex;align-items:center;gap:18px;padding:0 20px;height:64px;position:relative}
+  .dark .bar{background:rgba(13,12,11,.82);border-bottom:1px solid var(--line)}
+  .lightm .bar{background:rgba(247,245,242,.9);border-bottom:1px solid var(--paper-line);color:#12100E}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14.5px;letter-spacing:.09em;white-space:nowrap}
+  .brand img{width:30px;height:30px}
+  .brand b{color:var(--accent)}
+  .lightm .brand b{color:var(--accent-deep)}
+  .nav{display:flex;gap:2px;margin:0 auto;border:1px solid var(--line);background:rgba(255,255,255,.03);padding:4px;border-radius:999px}
+  .lightm .nav{border-color:var(--paper-line);background:rgba(0,0,0,.03)}
+  .nav a{font-size:13px;padding:7px 14px;border-radius:999px;color:var(--mut);text-decoration:none}
+  .nav a.on{background:#201E1B;color:var(--ink)}
+  .lightm .nav a.on{background:#EFEDE8;color:#12100E}
+  .cta{background:var(--accent);color:#12100E;font-weight:600;font-size:13px;padding:10px 16px;border-radius:999px;text-decoration:none;white-space:nowrap}
+  .ghost{border:1px solid var(--line);color:var(--mut);font-size:13px;padding:9px 14px;border-radius:999px;background:transparent;white-space:nowrap}
+  .lightm .ghost{border-color:var(--paper-line);color:#5a564d}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+  .accentline{position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent 8%,rgba(198,242,78,.55) 50%,transparent 92%)}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;color:var(--accent)}
+  ul{color:var(--mut);line-height:1.8;padding-left:18px;margin:0}
+  ul b{color:var(--ink);font-weight:600}
+  .note{font-size:12.5px;color:var(--mut);margin-top:14px}
+  @media(max-width:760px){.g3,.g4{grid-template-columns:repeat(2,1fr)}.hero{padding:30px}.nav{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Brand v2 · Orbit-D</h1>
+  <h2>DGDreams</h2>
+  <p class="lead">A bold <b style="color:var(--ink)">D</b> — two round-capped strokes sharing one gradient — with a spark
+  orbiting its shoulder. The D is the streak you keep; the spark is the dream. The v1 counter was too tight at
+  16&nbsp;px and the spark read as a smudge, so the spark moved out and the stroke gained weight.</p>
+
+  <div class="hero">
+    <img src="/brand/mark.svg" alt="DGDreams mark">
+    <div class="word"><img src="/brand/lockup.svg" alt="DGDreams lockup"></div>
+  </div>
+
+  <h3>Mark variants</h3>
+  <div class="grid g4">
+    <div class="card"><img src="/brand/mark.svg" alt="mark"><span class="lbl">on night</span></div>
+    <div class="card light"><img src="/brand/mark-mono.svg" alt="mark mono"><span class="lbl">on paper</span></div>
+    <div class="card" style="background:var(--accent)"><img src="/brand/mark-on-accent.svg" alt="on accent"><span class="lbl" style="color:#2b3a00">on acid</span></div>
+    <div class="card"><img src="/brand/avatar-mono.svg" alt="avatar mono"><span class="lbl">app icon · mono</span></div>
+  </div>
+
+  <h3>App icon &amp; favicon sizes</h3>
+  <div class="row">
+    <div class="ico"><img src="/brand/avatar-512.png" width="96" height="96" alt="app icon 512"><span class="lbl">512</span></div>
+    <div class="ico"><img src="/brand/mark-64.png" width="64" height="64" alt="64"><span class="lbl">64</span></div>
+    <div class="ico"><img src="/brand/mark-32.png" width="32" height="32" alt="32"><span class="lbl">32</span></div>
+    <div class="ico"><img src="/brand/mark-16.png" width="16" height="16" alt="16"><span class="lbl">16</span></div>
+    <div class="ico"><img src="/brand/apple-touch-icon-180.png" width="80" height="80" alt="ios 180"><span class="lbl">iOS 180</span></div>
+  </div>
+
+  <h3>Header — dark</h3>
+  <div class="mock dark">
+    <div class="bar">
+      <span class="brand"><img src="/brand/mark.svg" alt="">DGDREAMS<b>.</b></span>
+      <span class="nav"><a class="on" href="#">Today</a><a href="#">Ritual</a><a href="#">Leaderboard</a><a href="#">FAQ</a></span>
+      <span class="ghost"><span class="dot"></span> 0x71c…3f9a</span>
+      <a class="cta" href="#">Open app ↗</a>
+      <span class="accentline"></span>
+    </div>
+  </div>
+
+  <h3>Header — light</h3>
+  <div class="mock lightm">
+    <div class="bar">
+      <span class="brand"><img src="/brand/mark.svg" alt="">DGDREAMS<b>.</b></span>
+      <span class="nav"><a class="on" href="#">Today</a><a href="#">Ritual</a><a href="#">Leaderboard</a><a href="#">FAQ</a></span>
+      <span class="ghost"><span class="dot"></span> Connect</span>
+      <a class="cta" href="#">Open app ↗</a>
+      <span class="accentline"></span>
+    </div>
+  </div>
+  <p class="note">Sticky, 64&nbsp;px, glass background, one accent hairline. On phones the wordmark collapses to the mark alone and the destinations move into a sheet.</p>
+
+  <h3>Palette</h3>
+  <div class="sw">
+    <div class="chip"><div class="c" style="background:#0D0C0B"></div><span>#0D0C0B night</span></div>
+    <div class="chip"><div class="c" style="background:#171513"></div><span>#171513 card</span></div>
+    <div class="chip"><div class="c" style="background:#C6F24E"></div><span>#C6F24E acid</span></div>
+    <div class="chip"><div class="c" style="background:#6FD42F"></div><span>#6FD42F deep</span></div>
+    <div class="chip"><div class="c" style="background:#F7F5F2"></div><span>#F7F5F2 paper</span></div>
+    <div class="chip"><div class="c" style="background:#9A9488"></div><span>#9A9488 muted</span></div>
+  </div>
+
+  <h3>Files</h3>
+  <ul>
+    <li><b>/brand/mark.svg</b> — primary mark, transparent, gradient</li>
+    <li><b>/brand/mark-mono.svg</b> · <b>mark-light.svg</b> · <b>mark-on-accent.svg</b> — single-colour cuts</li>
+    <li><b>/brand/avatar-512.png</b> — app icon; <b>favicon.ico</b> — 16/32/48/64 (16 drops the spark)</li>
+    <li><b>/brand/lockup.svg</b> · <b>lockup-light.svg</b> — mark + wordmark outline, no webfont needed</li>
+    <li><b>/brand/og-1200x630.png</b> · <b>banner-1500x500.png</b> — social cards</li>
+    <li>Regenerate everything with <code>node scripts/build-brand-assets.mjs</code></li>
+  </ul>
+</div>
+</body>
+</html>

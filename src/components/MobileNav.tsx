@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAccount, useDisconnect } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { Wallet } from "lucide-react";
 
 import { PRIMARY_NAV } from "@/lib/nav";
+import { BrandLockup } from "@/components/site/Brand";
 import MoreSheet, { MoreGlyph } from "@/components/shell/MoreSheet";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 
@@ -69,10 +69,8 @@ export default function MobileNav() {
           borderBottom: "1px solid var(--border-default)",
         }}
       >
-        {/* Brand lockup from the brand kit (mark + wordmark, no font needed) */}
-        <Link href="/" aria-label="DGDreams" className="flex items-center">
-          <Image src="/brand/lockup.svg" alt="DGDreams" width={107} height={24} />
-        </Link>
+        {/* Brand: v2 mark + the same wordmark used in the public header */}
+        <BrandLockup size={26} />
         <div className="flex items-center gap-2">
           <ThemeSwitcher />
           <PhoneWallet />

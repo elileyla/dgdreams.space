@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="108" height="108" role="img" aria-label="DGDreams monochrome"><defs><linearGradient id="dgG" x1="26" y1="10" x2="84" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#EDFFA8"/><stop offset="0.42" stop-color="#C6F24E"/><stop offset="1" stop-color="#63C22F"/></linearGradient></defs><path fill="#0A0908" fill-rule="evenodd" d="M 25 13 H 45 C 70 13 84 28 84 48 C 84 68 70 83 45 83 H 25 Z M 39 27 H 45 C 60 27 70 36 70 48 C 70 60 60 69 45 69 H 39 Z"/><path fill="#0A0908" d="M 54.00 34.50 Q 56.02 45.98 67.50 48.00 Q 56.02 50.02 54.00 61.50 Q 51.98 50.02 40.50 48.00 Q 51.98 45.98 54.00 34.50 Z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs><linearGradient id="dg" x1="12" y1="8" x2="51" y2="57" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#EDFFA8"/>
+    <stop offset=".45" stop-color="#C6F24E"/>
+    <stop offset="1" stop-color="#6FD42F"/>
+  </linearGradient></defs>
+  
+  <path d="M18.5 14 V50" fill="none" stroke="#12100E" stroke-width="10" stroke-linecap="round"/>
+  <path d="M18.5 14 C 49 14 49 50 18.5 50" fill="none" stroke="#12100E" stroke-width="10" stroke-linecap="round"/>
+  <path fill="#12100E" d="M 54.5 3 Q 56.21 10.79 64 12.5 Q 56.21 14.21 54.5 22 Q 52.79 14.21 45 12.5 Q 52.79 10.79 54.5 3 Z"/>
+</svg>

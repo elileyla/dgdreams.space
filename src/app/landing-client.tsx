@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { m, useReducedMotion } from "framer-motion";
-import {
+import SiteHeader from "@/components/site/SiteHeader";import {
   Globe,
   Flame,
   Shield,
@@ -93,36 +93,10 @@ export default function LandingPage() {
 
   return (
     <div
-      className="min-h-screen relative overflow-hidden"
+      className="min-h-screen relative overflow-x-clip"
       style={{ background: "var(--bg-base)" }}
     >
-      {/* Navbar */}
-      <header className="relative z-20 flex items-center justify-between px-6 py-4 max-w-6xl mx-auto">
-        <Link href="/" aria-label="DGDreams" className="flex items-center">
-          <Image src="/brand/lockup.svg" alt="DGDreams" width={116} height={26} />
-        </Link>
-        <nav className="hidden sm:flex items-center gap-1 text-[14px]">
-          {[
-            { href: "/dashboard", label: "Today" },
-            { href: "/tasks", label: "Ritual" },
-            { href: "/leaderboard", label: "Leaderboard" },
-            { href: "/faq", label: "FAQ" },
-          ].map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="px-3 py-2 rounded-[10px] transition-colors hover:bg-[var(--bg-strong)]"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-        <Link href="/dashboard" className="btn-primary">
-          Open the app
-          <ArrowRight className="w-4 h-4" />
-        </Link>
-      </header>
+      <SiteHeader />
 
       {/* Hero */}
       <section className="relative z-10 flex flex-col items-center text-center px-6 pt-16 sm:pt-24 pb-16 max-w-4xl mx-auto">
