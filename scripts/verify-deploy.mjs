@@ -19,7 +19,7 @@
 import { resolve4 } from "node:dns/promises";
 
 const base = process.argv[2]?.replace(/\/+$/, "") || "https://dgdreams.space";
-const VERCEL_ANYCAST = ["76.76.21.21", "216.198.79.1"];
+const VERCEL_ANYCAST = ["76.76.21.21", "216.198.79.1", "64.29.17.1", "216.198.79.67"];
 
 let pass = 0;
 let fail = 0;

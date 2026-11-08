@@ -11,3 +11,12 @@
 build_errors.txt
 *.tsbuildinfo
 .git/
+# Local-only artefacts (screenshots, motion frames, stale export dirs) — big
+# and never served by Next (which only serves /public). Keep them out of the
+# CLI upload so a deploy stays a few MB instead of hundreds.
+.capture/
+/tmp-motion
+/shots
+/out
+/out-slim
+/output-premium
