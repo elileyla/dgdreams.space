@@ -12,6 +12,10 @@
  *   /api/badge?chain=8453 200 JSON, Base badge name, fresh 24h cache headers
  *   /output-premium/*.png 200, compressed (~180KB, not the old 1.3MB), 1y immutable
  *   /robots.txt           200, bulk-crawler blocks present
+ *   fdt budget            Fast Data Transfer against the 100 GB Hobby cap
+ *                          (run only when VERCEL_TOKEN is set; fails when the
+ *                          meter is past the guard or the month projects past
+ *                          the cap — Hobby pauses the team at 100 GB)
  *   dns resolve4          domain still resolves to the Vercel anycast IP
  * plus x-vercel-deployment-url printed at the end — that URL ties an answer
  * to a specific Vercel team ("which account is serving") without guessing.
@@ -94,6 +98,31 @@ try {
   }
 } catch (e) {
   bad("/output-premium/ethereum.png", String(e).split("\n")[0]);
+}
+
+// Fast Data Transfer budget: the Hobby plan includes 100 GB/cycle and pauses
+// the team when it is crossed, so every deploy check reports where the meter
+// sits. Uses the same endpoint the dashboard's Usage page renders.
+if (!process.env.VERCEL_TOKEN) {
+  console.log("  · fdt budget   skipped (set VERCEL_TOKEN to check the 100 GB meter)");
+} else {
+  try {
+    const { fdtSummary } = await import("./fdt-budget.mjs");
+    const fdt = await fdtSummary({ token: process.env.VERCEL_TOKEN });
+    for (const line of fdt.lines.slice(-4)) console.log(`      ${line}`);
+    if (fdt.ok) {
+      ok("fdt budget", `${fdt.data.pct.toFixed(1)}% used · ${fdt.data.projectedPct.toFixed(1)}% projected`);
+    } else {
+      bad(
+        "fdt budget",
+        fdt.data
+          ? `OVER GUARD — ${fdt.data.pct.toFixed(1)}% used, ${fdt.data.projectedPct.toFixed(1)}% projected`
+          : fdt.reason
+      );
+    }
+  } catch (e) {
+    bad("fdt budget", String(e).split("\n")[0]);
+  }
 }
 
 // dns: name still on the Vercel anycast address

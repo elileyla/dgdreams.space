@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 import { m } from "framer-motion";
 import { Compass, Lock, X } from "lucide-react";
 import { useAccount, useReadContract, useWaitForTransactionReceipt, useWriteContract, useSwitchChain } from "wagmi";
@@ -135,9 +136,16 @@ function MintedModal({
           className="relative rounded-[20px] flex items-center justify-center w-full"
           style={{ background: "var(--bg-strong)", aspectRatio: "1 / 1" }}
         >
-          <img
-            src={badgeImage(network)}
+          {/* The artwork PNG is the on-chain-sized file (marketplaces want the
+              original); the dialog draws ~380px, so let the optimizer ship the
+              scaled AVIF instead of ~190KB of PNG per view. */}
+          <Image
+            src={badgeImage(network) ?? "/logo.svg"}
             alt={`${network.shortName} badge`}
+            width={448}
+            height={448}
+            sizes="(max-width: 640px) 90vw, 380px"
+            quality={80}
             className="w-full h-full object-contain p-4"
             draggable={false}
           />
@@ -286,11 +294,17 @@ function GenLayerBadgeCard({ network, address, onState, onMinted }: BadgeCardPro
         style={{ background: "var(--bg-strong)" }}
         title={network.name}
       >
-        <img
-          src={badgeImage(network)}
+        {/* 32px on screen, ~190KB per full PNG — let the optimizer serve the
+            96px AVIF (a couple of KB) instead; sizes keeps the srcset from
+            falling back to the 100vw default and picking a phone-sized image. */}
+        <Image
+          src={badgeImage(network) ?? "/logo.svg"}
           alt={network.shortName}
+          width={96}
+          height={96}
+          sizes="32px"
+          quality={80}
           loading="lazy"
-          decoding="async"
           className="w-8 h-8 object-contain"
           draggable={false}
         />
@@ -507,11 +521,17 @@ function BadgeCard({ network, address, onState, onMinted }: BadgeCardProps) {
         style={{ background: "var(--bg-strong)" }}
         title={network.name}
       >
-        <img
-          src={badgeImage(network)}
+        {/* 32px on screen, ~190KB per full PNG — let the optimizer serve the
+            96px AVIF (a couple of KB) instead; sizes keeps the srcset from
+            falling back to the 100vw default and picking a phone-sized image. */}
+        <Image
+          src={badgeImage(network) ?? "/logo.svg"}
           alt={network.shortName}
+          width={96}
+          height={96}
+          sizes="32px"
+          quality={80}
           loading="lazy"
-          decoding="async"
           className="w-8 h-8 object-contain"
           draggable={false}
         />
