@@ -24,7 +24,7 @@ import { waitForGenLayerTx } from "@/lib/genlayer/tasks";
 /**
  * The Grand Tour — soulbound badges on every network.
  *
- * Twenty-four networks. Pricing, per chain and per UTC day: every wallet's
+ * Twenty-one networks. Pricing, per chain and per UTC day: every wallet's
  * first mint of the day is free (gas only), the second costs the chain's
  * "1 cent" rate, and every extra mint doubles from there. Transfers are
  * blocked on chain, so a badge can never leave its wallet. The card grid

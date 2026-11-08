@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "DGDreams — Daily On-Chain Streak",
     short_name: "DGDreams",
-    description: "Daily on-chain ritual, streak and badge terminal across 23 networks.",
+    description: "Daily on-chain ritual, streak and badge terminal across 21 networks.",
     start_url: "/dashboard",
     display: "standalone",
     // brand v2 "Orbit-D": night background, acid-lime mark

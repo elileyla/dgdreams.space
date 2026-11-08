@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "DGDreams"
   text: "Web3 Space Terminal"
-  tagline: One wallet. Twenty networks. Daily on-chain missions — streaks, AI contracts and soulbound NFTs.
+  tagline: One wallet. Twenty-one networks. Daily on-chain missions — streaks, AI contracts and soulbound NFTs.
   image:
     src: /logo.svg
     alt: DGDreams

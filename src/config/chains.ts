@@ -1,4 +1,4 @@
-import { mainnet, sepolia, baseSepolia } from "viem/chains";
+import { mainnet } from "viem/chains";
 import { defineChain, type Chain } from "viem";
 
 /** opBNB — custom so the flaky official node is not the only endpoint. */
@@ -117,21 +117,6 @@ export const arcMainnetChain = /*#__PURE__*/ defineChain({
     // explorer.arc.io fails DNS resolution — ArcScan first.
     default: { name: "ArcScan", url: "https://arc-scan.org" },
     circle: { name: "Arc Explorer", url: "https://explorer.arc.io" },
-  },
-});
-
-export const arcTestChain = /*#__PURE__*/ defineChain({
-  id: 5042002,
-  name: "ARC Testnet",
-  nativeCurrency: { decimals: 18, name: "ARC", symbol: "ARC" },
-  rpcUrls: {
-    // rpc.testnet.arc.network stopped resolving — the .io endpoint answers
-    // with the same chain id (0x4cef52), so it comes first.
-    default: { http: ["https://rpc.testnet.arc.io", "https://rpc.testnet.arc.network"] },
-    public: { http: ["https://rpc.testnet.arc.io", "https://rpc.testnet.arc.network"] },
-  },
-  blockExplorers: {
-    default: { name: "ARC Scan", url: "https://testnet.arcscan.app" },
   },
 });
 
@@ -295,20 +280,6 @@ export const soneiumChain = /*#__PURE__*/ defineChain({
   },
 });
 
-/** Arbitrum Sepolia — testnet, for trying the flow before mainnet gas. */
-export const arbitrumSepoliaChain = /*#__PURE__*/ defineChain({
-  id: 421614,
-  name: "Arbitrum Sepolia",
-  nativeCurrency: { decimals: 18, name: "Ether", symbol: "ETH" },
-  rpcUrls: {
-    default: { http: ["https://arbitrum-sepolia-rpc.publicnode.com"] },
-    public: { http: ["https://arbitrum-sepolia-rpc.publicnode.com"] },
-  },
-  blockExplorers: {
-    default: { name: "Arbiscan Sepolia", url: "https://sepolia.arbiscan.io" },
-  },
-});
-
 export const genlayerBradburyChain = /*#__PURE__*/ defineChain({
   id: 4221,
   name: "GenLayer Bradbury",
@@ -442,13 +413,11 @@ export const GAME2048_CONTRACTS: Record<number, `0x${string}`> = {
    5042: "0xAf1F1Ec78F94bf9B6FACf876C77A51562B7EbaB0",
   91342: "0xC288b68022e752d97E4395ECbA61C2079CE692Ad",
   4441: "0xff3A00Cf7d83723F88097bcc8230ae37B3aDF3ff",
-  5042002: "0xff3A00Cf7d83723F88097bcc8230ae37B3aDF3ff",
   1913: "0xff3A00Cf7d83723F88097bcc8230ae37B3aDF3ff",
   // Game2048 — verified on bscscan / opbnb.bscscan (BNB uses 0x4f41…, the working verified instance)
   56: "0x4f4102286c8a03CeE2b926c2AfAb06bdd5C6307A",
   204: "0xaa96e7C48Ad064f7f7827ad9f38579dba3bae325",
   42161: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
-  421614: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
   10: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
   // Soneium — deploy with: node scripts/deploy-l2.mjs --only 1868
   1868: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
@@ -468,18 +437,14 @@ export const NIKBASE_CONTRACTS: Record<number, `0x${string}`> = {
   4217: "0xff3A00Cf7d83723F88097bcc8230ae37B3aDF3ff",
   4663: "0x344Ad6A0D3aEb4bAA8d853C932fBeBeB4e798E3B",
   57073: "0x68bb9775B11551310D7A37Aae52e6505A0E1e733",
-  11155111: "0xff3A00Cf7d83723F88097bcc8230ae37B3aDF3ff",
-  84532: "0xdbeE9eA39FedD197D224EA7520A20b4434635A6a",
   91342: "0xff3A00Cf7d83723F88097bcc8230ae37B3aDF3ff",
   4441: "0x344Ad6A0D3aEb4bAA8d853C932fBeBeB4e798E3B",
-  5042002: "0x344Ad6A0D3aEb4bAA8d853C932fBeBeB4e798E3B",
    1913: "0x344Ad6A0D3aEb4bAA8d853C932fBeBeB4e798E3B",
    5042: "0x344Ad6A0D3aEb4bAA8d853C932fBeBeB4e798E3B",
   // NikBase v3.0.0 — verified on bscscan / opbnb.bscscan
   56: "0x4AE47749254CA48e950067057e7EEaaDD1498cdb",
   204: "0x94e067F69BC5C1d2F58C91EC0f1C03469452Eec9",
   42161: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
-  421614: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
   10: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
   // Soneium — deploy with: node scripts/deploy-l2.mjs --only 1868
   1868: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
@@ -596,18 +561,6 @@ export const mainnetNetworks: NetworkConfig[] = [
 ];
 
 export const testnetNetworks: NetworkConfig[] = [
-  makeNetworkConfig(sepolia, {
-    shortName: "SEP",
-    color: "var(--text-tertiary)",
-    isTestnet: true,
-    logo: "/logos/ethereum.png",
-  }),
-  makeNetworkConfig(baseSepolia, {
-    shortName: "BSEP",
-    color: "#0052FF",
-    isTestnet: true,
-    logo: "/logos/base.svg",
-  }),
   makeNetworkConfig(giwaSepoliaChain, {
     shortName: "GIWA",
     color: "var(--danger)",
@@ -624,12 +577,6 @@ export const testnetNetworks: NetworkConfig[] = [
     requiresLegacyGas: true,
     legacyGasPrice: "0x989680", // 0.1 gwei
   }),
-  makeNetworkConfig(arcTestChain, {
-    shortName: "ARC",
-    color: "var(--accent-text)",
-    isTestnet: true,
-    logo: "/logos/arc.png",
-  }),
   makeNetworkConfig(simpleChain, {
     shortName: "SIM",
     color: "#FF8C00",
@@ -645,12 +592,6 @@ export const testnetNetworks: NetworkConfig[] = [
     // Orbit style sequencer, same treatment as Liteforge.
     requiresLegacyGas: true,
     legacyGasPrice: "0x989680", // 0.1 gwei
-  }),
-  makeNetworkConfig(arbitrumSepoliaChain, {
-    shortName: "ARB-S",
-    color: "#12AAFF",
-    isTestnet: true,
-    logo: "/logos/arbitrum.png",
   }),
   makeNetworkConfig(marooTestnetChain, {
     shortName: "MAROO",
@@ -693,13 +634,9 @@ export const allChains = [
   optimismChain,
   soneiumChain,
   xrpEvmChain,
-  sepolia,
-  baseSepolia,
   giwaSepoliaChain,
   liteforgeChain,
-  arcTestChain,
   simpleChain,
-  arbitrumSepoliaChain,
   genlayerBradburyChain,
   marooTestnetChain,
   dogeosTestnetChain,

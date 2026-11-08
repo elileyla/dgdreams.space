@@ -22,8 +22,8 @@ import type { NetworkConfig } from "@/config/chains";
 export const BADGE_ADDR: Record<number, `0x${string}` | ""> = {
   1: "", 8453: "0xaea7dd11af048047b210fa8830fba795f6eccfea", 999: "0xe44e88f432ce74e3522a024ff5ed2c8393da93f9", 130: "0xaf928e2ed9fcfed28a5a037044cec138b1bb7041", 4217: "0xeffc9f6951208d49afe1b9b9c8b98229a24be8bc", 4663: "0x672828daa4652c87117a3f91f3cb7c80afd218c3", 57073: "0xcae44211a544e9316c28c2a849ea176cddf8dfc8",
   5042: "0x58420b248ef127c796992c04cabf123a72bcd1b3", 56: "0xc288b68022e752d97e4395ecba61c2079ce692ad", 204: "0xff3a00cf7d83723f88097bcc8230ae37b3adf3ff", 42161: "0xc288b68022e752d97e4395ecba61c2079ce692ad", 10: "0x6e17e98ff56b12886636fa9ea3c17e0cd01d9790", 1868: "0x6e17e98ff56b12886636fa9ea3c17e0cd01d9790",
-  11155111: "0xd08e9bb972dc4e8bff1a6bb50fa75c86fb470346", 84532: "0x672828daa4652c87117a3f91f3cb7c80afd218c3", 91342: "0xcb1b3a864d384d5ad42b6f5b81825ab084444d9c", 4441: "0x76423ec7eaad5fdb349e6d77d760b28830436561", 5042002: "0xd08e9bb972dc4e8bff1a6bb50fa75c86fb470346",
-  1913: "0xd3e31c08423a537b4d0e108971dc715daaab4893", 4221: "0x8A32da709dA16DF8c7039dA22d0688a6817587E4", 421614: "0x6e17e98ff56b12886636fa9ea3c17e0cd01d9790", 450815: "0xeffc9f6951208d49afe1b9b9c8b98229a24be8bc",
+  91342: "0xcb1b3a864d384d5ad42b6f5b81825ab084444d9c", 4441: "0x76423ec7eaad5fdb349e6d77d760b28830436561",
+  1913: "0xd3e31c08423a537b4d0e108971dc715daaab4893", 4221: "0x8A32da709dA16DF8c7039dA22d0688a6817587E4", 450815: "0xeffc9f6951208d49afe1b9b9c8b98229a24be8bc",
   6281971: "0x12d6cfc9659c613dae006072cf9f5524bf60055d",
   99801: "0xff3a00cf7d83723f88097bcc8230ae37b3adf3ff",
   1440000: "0xc288b68022e752d97e4395ecba61c2079ce692ad",
@@ -95,9 +95,9 @@ export function badgeAddress(
 
 /**
  * Grand Tour artwork (`/public/output-premium`), per chain. Several chains
- * share the logo of their sibling (Sepolia wears the Ethereum mark, Base
- * Sepolia wears Base's, and so on). Anything not listed falls back to the
- * network's own `logo` from the network config.
+ * share the logo of their sibling (GIWA Sepolia wears the Ethereum mark,
+ * and so on). Anything not listed falls back to the network's own `logo`
+ * from the network config.
  */
 export const BADGE_IMAGE: Record<number, string> = {
   1: "/output-premium/ethereum.png",
@@ -113,14 +113,10 @@ export const BADGE_IMAGE: Record<number, string> = {
   42161: "/output-premium/arbitrum.png",
   10: "/output-premium/optimism.png",
   1868: "/output-premium/soneium.png",
-  11155111: "/output-premium/ethereum.png",
-  84532: "/output-premium/base.png",
   91342: "/output-premium/giwa.png",
   4441: "/output-premium/litvm.png",
-  5042002: "/output-premium/arc.png",
   1913: "/output-premium/simplechain.png",
   4221: "/output-premium/genlayer.png",
-  421614: "/output-premium/arbitrum.png",
   450815: "/output-premium/maroo.png",
   6281971: "/output-premium/dogeos.png",
   99801: "/output-premium/elysium.png",

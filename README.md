@@ -27,7 +27,7 @@
 
 ## Overview
 
-**DGDreams** is a unified dashboard where users connect their wallet once and execute daily on-chain tasks across **25 blockchain networks** — Ethereum, Base, Arbitrum One, OP Mainnet, Soneium, HyperEVM, Unichain, Tempo, Robinhood, Ink, Arc, XRP EVM, BNB Chain and opBNB on mainnet, plus testnets including **Arbitrum Sepolia**, **GenLayer Bradbury**, **Maroo Testnet**, **DogeOS Chikyū Testnet**, **Elysium Testnet**, LitVM, GIWA, ARC, and SimpleChain.
+**DGDreams** is a unified dashboard where users connect their wallet once and execute daily on-chain tasks across **21 blockchain networks** — Ethereum, Base, Arbitrum One, OP Mainnet, Soneium, HyperEVM, Unichain, Tempo, Robinhood, Ink, Arc, XRP EVM, BNB Chain and opBNB on mainnet, plus testnets including **GenLayer Bradbury**, **Maroo Testnet**, **DogeOS Chikyū Testnet**, **Elysium Testnet**, LitVM, GIWA, and SimpleChain.
 
 | Feature | Description |
 |---|---|
@@ -178,14 +178,10 @@ User clicks "Start" → DailyTaskPanel opens
 ### Testnet
 | Network | Chain ID | Currency |
 |---|---|---|
-| Sepolia | 11155111 | ETH |
-| Base Sepolia | 84532 | ETH |
 | GIWA Sepolia | 91342 | ETH |
 | LitVM Liteforge | 4441 | zkLTC |
 | <img src="https://dgdreams.space/genlayer-spinner.svg" alt="" width="18" /> **GenLayer Bradbury** | **4221** | **GEN** |
-| ARC Testnet | 5042002 | ARC |
 | SimpleChain | 1913 | SIM |
-| **Arbitrum Sepolia** | **421614** | **ETH** |
 | **Maroo Testnet** | **450815** | **tOKRW** |
 | **DogeOS Chikyū Testnet** | **6281971** | **DOGE** |
 | **Elysium Testnet** | **99801** | **HYPE** |

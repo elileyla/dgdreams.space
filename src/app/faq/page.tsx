@@ -21,9 +21,9 @@ const faqs = [
     icon: Wallet,
     color: "var(--accent-text)",
     items: [
-      { q: "What is DGDreams?", a: "DGDreams is a cross-chain on-chain operations dashboard that gamifies daily Web3 activity. It tracks your streaks and points across 25 networks (24 EVM chains plus GenLayer) through a unified mission-control interface." },
+      { q: "What is DGDreams?", a: "DGDreams is a cross-chain on-chain operations dashboard that gamifies daily Web3 activity. It tracks your streaks and points across 21 networks (20 EVM chains plus GenLayer) through a unified mission-control interface." },
       { q: "How do I connect my wallet?", a: "Click the 'Connect Wallet' button in the top bar. DGDreams supports any wallet through RainbowKit — MetaMask, WalletConnect, Rainbow, Ledger, and more." },
-      { q: "Which networks are supported?", a: "We support 14 mainnets (Base, HyperEVM, Unichain, Tempo, Robinhood Chain, Ethereum, Ink, Arc, Soneium, XRP EVM, BNB Chain, opBNB, Arbitrum One, OP Mainnet) and 11 testnets (Sepolia, Base Sepolia, GIWA Sepolia, LITVM Liteforge, ARC Testnet, SimpleChain, Arbitrum Sepolia, GenLayer Bradbury, Maroo Testnet, DogeOS Chikyū Testnet, Elysium Testnet)." },
+      { q: "Which networks are supported?", a: "We support 14 mainnets (Base, HyperEVM, Unichain, Tempo, Robinhood Chain, Ethereum, Ink, Arc, Soneium, XRP EVM, BNB Chain, opBNB, Arbitrum One, OP Mainnet) and 7 testnets (GIWA Sepolia, LITVM Liteforge, SimpleChain, GenLayer Bradbury, Maroo Testnet, DogeOS Chikyū Testnet, Elysium Testnet)." },
     ],
   },
   {

@@ -1,6 +1,6 @@
 # Networks
 
-DGDreams supports **25 networks** — 14 mainnets and 11 testnets — all from one wallet.
+DGDreams supports **21 networks** — 14 mainnets and 7 testnets — all from one wallet.
 
 ## 🟢 Mainnet
 
@@ -25,14 +25,10 @@ DGDreams supports **25 networks** — 14 mainnets and 11 testnets — all from o
 
 | Network | Chain ID | Currency |
 |---|---|---|
-| Sepolia | 11155111 | ETH |
-| Base Sepolia | 84532 | ETH |
 | GIWA Sepolia | 91342 | ETH |
 | LitVM Liteforge | 4441 | zkLTC |
 | **GenLayer Bradbury** | **4221** | **GEN** |
-| ARC Testnet | 5042002 | ARC |
 | SimpleChain | 1913 | SIM |
-| **Arbitrum Sepolia** | 421614 | ETH |
 | **Maroo Testnet** | 450815 | tOKRW |
 | **DogeOS Chikyū Testnet** | 6281971 | DOGE |
 | **Elysium Testnet** | 99801 | HYPE |

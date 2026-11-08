@@ -23,7 +23,7 @@ import SiteHeader from "@/components/site/SiteHeader";import {
 const features = [
   {
     icon: Globe,
-    title: "23 networks, one place",
+    title: "21 networks, one place",
     desc: "Run the same daily rituals on Ethereum, Base, Arbitrum, BNB Chain, GenLayer and more without switching apps.",
     span: "lg:col-span-2",
   },
@@ -122,7 +122,7 @@ export default function LandingPage() {
           className="text-[16px] sm:text-[20px] max-w-2xl mb-9 leading-relaxed"
           style={{ color: "var(--text-secondary)" }}
         >
-          Connect once. Check in, say GM and GN across 23 networks, keep a
+          Connect once. Check in, say GM and GN across 21 networks, keep a
           streak and unlock soulbound badges.
         </m.p>
 
