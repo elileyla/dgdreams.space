@@ -1,0 +1,71 @@
+[profile.default]
+src = "contracts"
+out = "out"
+libs = ["node_modules"]
+solc_version = "0.8.24"
+optimizer = true
+optimizer_runs = 200
+via_ir = false
+remappings = [
+    "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+]
+
+# Slim build: identical source and optimizer settings, but the trailing CBOR
+# metadata (compiler version + IPFS hash) is stripped.
+#
+# That metadata is what makes a contract verifiable on Etherscan/BscScan, so it
+# stays ON for everything in this profile. It is only dropped for the one-click
+# artifacts in contracts/OneClick.sol, which the user deploys straight from the
+# browser and never verifies — for them the ~11k gas it costs is pure waste.
+#
+#   forge build                                # verifiable artifacts
+#   FOUNDRY_PROFILE=slim forge build           # lean artifacts for the 6-in-1
+#
+# See scripts/export-deployable.mjs, which reads from both output dirs.
+[profile.slim]
+out = "out-slim"
+optimizer = true
+optimizer_runs = 200
+via_ir = false
+bytecode_hash = "none"
+cbor_metadata = false
+remappings = [
+    "@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+]
+
+# Networks the app supports for daily missions.
+# Deploy with:  forge create contracts/NikBase.sol:NikBase --rpc-url $RPC --private-key $PK --broadcast
+[rpc_endpoints]
+bsc = "${BSC_RPC_URL}"
+opbnb = "${OPBNB_RPC_URL}"
+arbitrum = "${ARBITRUM_RPC_URL}"
+optimism = "${OPTIMISM_RPC_URL}"
+soneium = "${SONEIUM_RPC_URL}"
+xrplevm = "${XRPLEVM_RPC_URL}"
+maroo_testnet = "${MAROO_RPC_URL}"
+dogeos_testnet = "${DOGEOS_RPC_URL}"
+elysium_testnet = "${ELYSIUM_RPC_URL}"
+arbitrum_sepolia = "${ARBITRUM_SEPOLIA_RPC_URL}"
+
+# Explorer API keys, used by scripts/verify-l2.mjs.
+#   ARBITRUM_API_KEY / OPTIMISM_API_KEY  → arbiscan.io and optimistic.etherscan.io
+[etherscan]
+bsc = { key = "${BSCSCAN_API_KEY}", chain = 56 }
+opbnb = { key = "${BSCSCAN_API_KEY}", chain = 204 }
+arbitrum = { key = "${ARBITRUM_API_KEY}", chain = 42161 }
+optimism = { key = "${OPTIMISM_API_KEY}", chain = 10 }
+soneium = { key = "${SONEIUM_API_KEY}", chain = 1868, url = "https://soneium.blockscout.com/api" }
+# XRPL EVM's explorer serves the legacy Etherscan-compatible API at /api and
+# answers keyless (verified live) — no key required.
+xrplevm = { key = "", chain = 1440000, url = "https://explorer.xrplevm.org/api" }
+maroo_testnet = { key = "${MAROO_API_KEY}", chain = 450815, url = "https://explorer-testnet.maroo.io/blockscout/api" }
+# l2scan rejects any non-empty apikey ("Invalid API Key") but accepts requests
+# with no apikey at all — hence the literal empty key (an env placeholder value
+# leaked into the verification request and broke it).
+dogeos_testnet = { key = "", chain = 6281971, url = "https://dogeos-testnet.l2scan.co/api" }
+# Elysium's explorer is Blockscout-based, but its verification API requires a
+# partner access code — pass it as key="<code>" when verifying.
+elysium_testnet = { key = "", chain = 99801, url = "https://testnet.elysium.kinetiq.xyz/explorer/api" }
+arbitrum_sepolia = { key = "${ARBITRUM_API_KEY}", chain = 421614 }
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md

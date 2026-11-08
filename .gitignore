@@ -1,0 +1,37 @@
+.vercel
+.env*
+
+node_modules/
+.next/
+out/
+out-slim/
+dist/
+broadcast/
+cache/
+*.log
+__pycache__/
+.pytest_cache/
+*.pyc
+docs/node_modules/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+docs/.vercel/
+
+# deployer state — contains deployed addresses, not secrets, but it is
+# machine-specific state that should stay out of the repo.
+deployer/deployments.json
+deployer/node_modules/
+build_errors.txt
+*.tsbuildinfo
+
+# local working artifacts — browser capture profiles (contain cookies/history),
+# animation frame dumps, screenshots and one-off probe scripts. Never publish.
+.capture/
+tmp-motion/
+shots/
+freebuff-sites-build/
+counter-solo.png
+scripts/_*.mjs
+scripts/_*.cjs
+tmp-motion.mjs
+

@@ -1,0 +1,159 @@
+"use client";
+
+import { useState } from "react";
+import { m, AnimatePresence } from "framer-motion";
+import {
+  ChevronDown,
+  ChevronUp,
+  HelpCircle,
+  Wallet,
+  Zap,
+  Shield,
+  Gamepad2,
+  Globe,
+  Star,
+  BarChart3,
+} from "lucide-react";
+import DashboardLayout from "@/components/DashboardLayout";
+
+const faqs = [
+  {
+    category: "Getting Started",
+    icon: Wallet,
+    color: "var(--accent-text)",
+    items: [
+      { q: "What is DGDreams?", a: "DGDreams is a cross-chain on-chain operations dashboard that gamifies daily Web3 activity. It tracks your streaks and points across 25 networks (24 EVM chains plus GenLayer) through a unified mission-control interface." },
+      { q: "How do I connect my wallet?", a: "Click the 'Connect Wallet' button in the top bar. DGDreams supports any wallet through RainbowKit — MetaMask, WalletConnect, Rainbow, Ledger, and more." },
+      { q: "Which networks are supported?", a: "We support 14 mainnets (Base, HyperEVM, Unichain, Tempo, Robinhood Chain, Ethereum, Ink, Arc, Soneium, XRP EVM, BNB Chain, opBNB, Arbitrum One, OP Mainnet) and 11 testnets (Sepolia, Base Sepolia, GIWA Sepolia, LITVM Liteforge, ARC Testnet, SimpleChain, Arbitrum Sepolia, GenLayer Bradbury, Maroo Testnet, DogeOS Chikyū Testnet, Elysium Testnet)." },
+    ],
+  },
+  {
+    category: "Points & Streaks",
+    icon: Star,
+    color: "var(--warning)",
+    items: [
+      { q: "How do I earn points?", a: "Points are earned by completing on-chain actions: daily tasks (+10 pts each), maintaining streaks (+5 pts per day), playing 2048 (+50 pts per game), and high score bonuses." },
+      { q: "What is the streak system?", a: "Your streak tracks consecutive days of on-chain activity. A 7-day streak unlocks soulbound NFT minting. Streaks are tracked per wallet on the NikBase contract, and the day rolls over at 00:00 UTC." },
+      { q: "How are points calculated?", a: "Points combine task actions, a daily streak bonus, game plays and score bonuses. Your totals are ranked on the Leaderboard page." },
+    ],
+  },
+  {
+    category: "Daily Tasks",
+    icon: Zap,
+    color: "var(--accent-text)",
+    items: [
+      { q: "What are daily tasks?", a: "Daily tasks are on-chain actions you perform on supported networks. Each network has 3 tasks per day: Daily Check-In, GM and GN. Complete all 3 to mark the day as done. Tasks are interactions with NikBase contracts." },
+      { q: "How do I start a task?", a: "Go to /tasks, select a network, and click 'Start Daily Tasks'. The task panel will guide you through each action. You must be connected to the correct network." },
+      { q: "What happens if I switch networks?", a: "You can switch networks at any time. Your progress is saved per network. Each network has its own 3-task counter and streak." },
+    ],
+  },
+  {
+    category: "2048 Game",
+    icon: Gamepad2,
+    color: "var(--accent-text)",
+    items: [
+      { q: "How does on-chain 2048 work?", a: "Every game play records your score to the Game2048 contract. Scores are permanently stored on-chain. Your play count and high score are tracked across all supported networks." },
+      { q: "What are the milestones?", a: "Milestones are unlocked at tile values: 16, 32, 64, 128, 256, 512, 1024, and 2048. Each milestone is recorded on-chain as a badge of achievement." },
+      { q: "Can I play on any network?", a: "2048 is deployed on 11+ networks. Use the network selector in the game UI to choose which chain to record your score on." },
+    ],
+  },
+  {
+    category: "Security",
+    icon: Shield,
+    color: "var(--success)",
+    items: [
+      { q: "Is my wallet safe?", a: "DGDreams never holds your private keys. All transactions are signed by your wallet. Always verify the network and contract address before signing." },
+      { q: "What contracts do you use?", a: "We use NikBase contracts for daily tasks and Game2048 contracts for game scoring. All contracts are open-source and verified on their respective block explorers." },
+      { q: "How is my data stored?", a: "On-chain data (scores, streaks, actions) is stored permanently on the blockchain. Off-chain preferences (social links, settings) are stored in your browser's localStorage." },
+    ],
+  },
+  {
+    category: "Networks & Gas",
+    icon: Globe,
+    color: "var(--text-tertiary)",
+    items: [
+      { q: "How do I add a custom network?", a: "You can configure custom RPC URLs and chain IDs through your wallet provider. Popular EVM networks are supported out of the box." },
+      { q: "Which network has the lowest gas?", a: "Base and most L2s (HyperEVM, Unichain, Tempo) have sub-cent gas fees. Arc mainnet settles gas in USDC, so fees stay dollar-denominated. Ethereum mainnet gas varies based on network congestion." },
+    ],
+  },
+];
+
+export default function FaqPage() {
+  const [openCategory, setOpenCategory] = useState<string | null>(null);
+  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
+
+  return (
+    <DashboardLayout title="FAQ" subtitle="// frequently asked questions">
+      <div className="max-w-3xl mx-auto space-y-4">
+        {faqs.map((cat) => {
+          const Icon = cat.icon;
+          const isOpen = openCategory === cat.category;
+
+          return (
+            <div key={cat.category} className="glass-panel rounded-xl overflow-hidden">
+              <button
+                onClick={() => setOpenCategory(isOpen ? null : cat.category)}
+                className="w-full flex items-center gap-3 p-4 hover:bg-[rgba(0,212,255,0.04)] transition-colors"
+              >
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center"
+                  style={{ background: `${cat.color}18`, border: `1px solid ${cat.color}33` }}>
+                  <Icon className="w-4 h-4" style={{ color: cat.color }} />
+                </div>
+                <span className="flex-1 font-semibold text-sm text-[var(--text-bright)] text-left">
+                  {cat.category}
+                </span>
+                <span className="text-[12px] text-[var(--text-tertiary)]">{cat.items.length} topics</span>
+                {isOpen ? <ChevronUp className="w-4 h-4 text-[var(--text-tertiary)]" /> : <ChevronDown className="w-4 h-4 text-[var(--text-tertiary)]" />}
+              </button>
+
+              <AnimatePresence>
+                {isOpen && (
+                  <m.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-4 pb-4 flex flex-col gap-2 border-t border-[var(--border-default)]/30 pt-3">
+                      {cat.items.map((item) => {
+                        const qOpen = openQuestion === item.q;
+                        return (
+                          <div key={item.q} className="rounded-xl overflow-hidden"
+                            style={{ background: "rgba(6,13,26,0.6)", border: "1px solid rgba(26,58,92,0.3)" }}>
+                            <button
+                              onClick={() => setOpenQuestion(qOpen ? null : item.q)}
+                              className="w-full flex items-center justify-between p-3 text-left"
+                            >
+                              <span className="text-sm text-[var(--text-secondary)] font-medium">{item.q}</span>
+                              {qOpen ? <ChevronUp className="w-3.5 h-3.5 text-[var(--text-tertiary)] shrink-0" /> : <ChevronDown className="w-3.5 h-3.5 text-[var(--text-tertiary)] shrink-0" />}
+                            </button>
+                            <AnimatePresence>
+                              {qOpen && (
+                                <m.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.15 }}
+                                  className="overflow-hidden"
+                                >
+                                  <p className="px-3 pb-3 text-xs text-[var(--text-tertiary)] leading-relaxed">
+                                    {item.a}
+                                  </p>
+                                </m.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </m.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
+    </DashboardLayout>
+  );
+}

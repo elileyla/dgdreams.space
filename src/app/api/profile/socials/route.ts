@@ -1,0 +1,120 @@
+import { NextResponse } from "next/server";
+import { db } from "@/db";
+import { walletSocials } from "@/db/schema";
+import { eq, and } from "drizzle-orm";
+import { getAddressFromToken } from "@/lib/session";
+import { rateLimit, clientIp } from "@/lib/rateLimit";
+import { isValidAddress, sanitizeString } from "@/lib/validation";
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const address = searchParams.get("address");
+
+  if (!address || !isValidAddress(address)) {
+    return NextResponse.json(
+      { error: "A valid Ethereum address is required" },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const rows = await db
+      .select()
+      .from(walletSocials)
+      .where(eq(walletSocials.walletAddress, address.toLowerCase()));
+    const socials: Record<string, string> = {};
+    for (const row of rows) {
+      socials[row.platform] = row.handle;
+    }
+    return NextResponse.json({ socials });
+  } catch (error) {
+    console.error("Failed to fetch socials:", error);
+    return NextResponse.json({ socials: {} }, { status: 500 });
+  }
+}
+
+export async function PUT(request: Request) {
+  if (!rateLimit(clientIp(request), 20, 60_000)) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
+  const sessionAddress = getAddressFromToken(request);
+  if (!sessionAddress) {
+    return NextResponse.json(
+      { error: "Signed-in session is required" },
+      { status: 401 }
+    );
+  }
+
+  try {
+    const body = (await request.json()) as {
+      address?: string;
+      socials?: Record<string, string>;
+    };
+
+    if (!body.address || !isValidAddress(body.address) || !body.socials) {
+      return NextResponse.json(
+        { error: "Valid address and socials are required" },
+        { status: 400 }
+      );
+    }
+
+    const addr = body.address.toLowerCase();
+    if (sessionAddress.toLowerCase() !== addr) {
+      return NextResponse.json(
+        { error: "Address does not match the signed-in session" },
+        { status: 403 }
+      );
+    }
+
+    const upserted: { platform: string; handle: string }[] = [];
+
+    for (const [rawPlatform, rawHandle] of Object.entries(body.socials)) {
+      const platform = sanitizeString(rawPlatform, 32);
+      if (!platform) continue;
+
+      const handle = typeof rawHandle === "string" ? sanitizeString(rawHandle, 128) : null;
+
+      const existing = await db
+        .select()
+        .from(walletSocials)
+        .where(
+          and(
+            eq(walletSocials.walletAddress, addr),
+            eq(walletSocials.platform, platform)
+          )
+        )
+        .limit(1);
+
+      // Empty or invalid handle deletes the link
+      if (!handle) {
+        if (existing.length > 0) {
+          await db
+            .delete(walletSocials)
+            .where(eq(walletSocials.id, existing[0].id));
+        }
+        continue;
+      }
+
+      if (existing.length > 0) {
+        const [updated] = await db
+          .update(walletSocials)
+          .set({ handle, updatedAt: new Date() })
+          .where(eq(walletSocials.id, existing[0].id))
+          .returning();
+        upserted.push({ platform: updated.platform, handle: updated.handle });
+      } else {
+        const [inserted] = await db
+          .insert(walletSocials)
+          .values({ walletAddress: addr, platform, handle })
+          .returning();
+        upserted.push({ platform: inserted.platform, handle: inserted.handle });
+      }
+    }
+
+    return NextResponse.json({ socials: upserted });
+  } catch (error) {
+    console.error("Failed to save socials:", error);
+    return NextResponse.json({ error: "Failed to save socials" }, { status: 500 });
+  }
+}
