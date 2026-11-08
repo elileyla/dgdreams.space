@@ -1,0 +1,41 @@
+# Fast Data Transfer guard.
+#
+# The Hobby plan includes 100 GB of Fast Data Transfer per cycle and PAUSES the
+# team when it is crossed, so this runs once a day, reads the same usage feed
+# the dashboard renders, and fails the run (→ email to you) when the meter is
+# past 80% or when the month projects past 100%.
+#
+# Needs a repo secret named VERCEL_TOKEN (a Vercel access token for the team).
+# Without it the job exits green with a note instead of failing — a missing
+# secret must not look like an alert.
+#
+#   gh secret set VERCEL_TOKEN            # from a local terminal
+#
+# Run it by hand any time from the Actions tab, or locally with
+#   VERCEL_TOKEN=… npm run fdt
+name: FDT budget
+
+on:
+  schedule:
+    - cron: "17 4 * * *" # 04:17 UTC daily
+  workflow_dispatch:
+
+jobs:
+  budget:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check Fast Data Transfer against the 100 GB cap
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::notice::VERCEL_TOKEN is not set — skipping the FDT guard (add the secret to enable it)"
+            exit 0
+          fi
+          node scripts/fdt-budget.mjs --fail-at 80
