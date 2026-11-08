@@ -973,7 +973,7 @@ h1, h2, h3 {
 .max-w-full.space-y-4 > *:nth-child(2),
 .max-w-full.space-y-4 > *:nth-child(6) { display: none !important; }
 
-/* the ritual gets the full width, the 2048 tile sits beside it */
+/* the ritual gets the full width */
 .max-w-full.space-y-4 > *:nth-child(5) { grid-template-columns: 1fr !important; }
 @media (min-width: 1024px) {
   .max-w-full.space-y-4 > *:nth-child(5) {

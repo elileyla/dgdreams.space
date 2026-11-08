@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { m } from "framer-motion";
-import { Flame, Gamepad2, RefreshCw, Star, UserRound } from "lucide-react";
+import { Flame, RefreshCw, Star, UserRound } from "lucide-react";
 import Image from "next/image";
 import { useAccount } from "wagmi";
 
@@ -10,7 +10,7 @@ import DashboardLayout from "@/components/DashboardLayout";
 import { mainnetNetworks, testnetNetworks } from "@/config/chains";
 import { shortenAddress } from "@/lib/utils";
 
-type Category = "streak" | "game2048" | "litevm";
+type Category = "streak" | "litevm";
 
 interface LeaderboardEntry {
   rank: number;
@@ -34,7 +34,6 @@ const CATEGORIES: {
   sub: string;
 }[] = [
   { id: "streak", label: "Streak", icon: Flame, unit: "days", sub: "Consecutive days" },
-  { id: "game2048", label: "2048", icon: Gamepad2, unit: "points", sub: "Best score" },
   // "litevm" is what the API and the table still call it; the tab says what it
   // actually ranks, which is total points.
   { id: "litevm", label: "Points", icon: Star, unit: "points", sub: "Total points" },
@@ -230,7 +229,7 @@ export default function LeaderboardPage() {
               </p>
               <p className="text-[12px] mt-1" style={{ color: "var(--text-faint)" }}>
                 {network === ALL_NETWORKS
-                  ? "Be the first — finish a mission or a game."
+                  ? "Be the first — finish a mission or mint a badge."
                   : "Nothing recorded on this network yet."}
               </p>
             </div>

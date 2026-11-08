@@ -2,14 +2,10 @@ import {
   ArrowDownUp,
   BookOpen,
   CheckCircle2,
-  Film,
   FileText,
-  Globe,
   HelpCircle,
   Layers,
-  Puzzle,
   Rocket,
-  Scale,
   ShieldCheck,
   SquareTerminal,
   Sunrise,
@@ -53,21 +49,9 @@ export const PRIMARY_NAV: NavItem[] = [
     icon: Trophy,
     blurb: "Where you stand",
   },
-  {
-    href: "/2048",
-    label: "Play",
-    icon: Puzzle,
-    blurb: "2048, scored on chain",
-  },
 ];
 
 export const MORE_NAV: NavItem[] = [
-  {
-    href: "/how",
-    label: "How it works",
-    icon: Film,
-    blurb: "A 35-second tour of the daily loop",
-  },
   {
     href: "/gallery",
     label: "Gallery",
@@ -89,16 +73,6 @@ export const MORE_NAV: NavItem[] = [
     href: "/deploy",
     label: "Deploy",
     icon: Rocket,
-  },
-  {
-    href: "/genlayer",
-    label: "GenLayer",
-    icon: Globe,
-  },
-  {
-    href: "/truthcourt",
-    label: "TruthCourt",
-    icon: Scale,
   },
   {
     href: "/sybil",

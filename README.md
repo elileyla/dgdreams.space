@@ -106,7 +106,6 @@ src/
 ├── app/
 │   ├── dashboard/       # Network grid overview
 │   ├── tasks/           # Daily task execution page
-│   ├── 2048/            # Binary milestone game
 │   ├── deploy/          # Deploy the app's own contracts
 │   ├── faq/             # Help & documentation
 │   └── api/             # Backend API routes
@@ -331,7 +330,7 @@ class PriceOracle(gl.Contract):
 4. Agreed price + `updated_at` timestamp is stored on-chain
 5. `isFresh(symbol, max_age_seconds)` view method checks whether stored data is still fresh
 
-**Page**: [`/genlayer-oracle`](https://dgdreams.space/genlayer-oracle) — switch to GenLayer, select a symbol, and fetch
+**Status**: the oracle UI is no longer part of the site; the contract and client helpers remain in the repo.
 
 ### Prediction Market
 

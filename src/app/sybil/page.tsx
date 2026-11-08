@@ -173,7 +173,7 @@ function NoDataNote({ report, address }: { report: SybilReport; address?: string
         <p className="text-[12px] text-[var(--accent-text)] font-medium mb-1">To get a real score</p>
         <ul className="text-[12px] text-[var(--text-tertiary)] space-y-1 leading-relaxed">
           <li>· Complete your daily tasks so a streak is recorded on-chain.</li>
-          <li>· Play 2048 or join a tournament, so activity is on record.</li>
+          <li>· Mint a badge or explore the gallery, so activity is on record.</li>
           <li>· Link a social handle in your profile.</li>
         </ul>
       </div>

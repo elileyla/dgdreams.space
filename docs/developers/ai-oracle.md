@@ -41,6 +41,6 @@ class PriceOracle(gl.Contract):
 4. The agreed price (plus a `updated_at` timestamp) is stored on-chain.
 5. `isFresh(symbol, max_age_seconds)` tells consumers whether the stored price is still fresh.
 
-## 🌐 Try it live
+## 🌐 Status
 
-Switch to **GenLayer Bradbury** on the dashboard and head to [`/genlayer-oracle`](https://dgdreams.space/genlayer-oracle) — pick a symbol and fetch. This oracle is also used by the [Prediction Market](./prediction-market) for oracle-mediated resolution.
+The oracle UI has been removed from the site. The contract and the client helpers remain in the repo for anyone who wants to read or redeploy it. The [Prediction Market](./prediction-market) docs still describe oracle-mediated resolution.

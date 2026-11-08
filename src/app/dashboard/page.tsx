@@ -5,7 +5,6 @@ import TodayHero from "@/components/ritual/TodayHero";
 import NetworkStatusCard from "@/components/ritual/NetworkStatusCard";
 import BadgeCard from "@/components/ritual/BadgeCard";
 import RankCard from "@/components/ritual/RankCard";
-import PlayCard from "@/components/ritual/PlayCard";
 import { BentoGrid } from "@/components/ui/Bento";
 
 /**
@@ -29,7 +28,6 @@ export default function DashboardPage() {
           </div>
           <BadgeCard />
           <RankCard />
-          <PlayCard />
         </BentoGrid>
       </div>
     </AppShell>

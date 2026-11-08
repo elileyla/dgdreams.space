@@ -9,7 +9,6 @@ import {
   Wallet,
   Zap,
   Shield,
-  Gamepad2,
   Globe,
   Star,
   BarChart3,
@@ -32,9 +31,9 @@ const faqs = [
     icon: Star,
     color: "var(--warning)",
     items: [
-      { q: "How do I earn points?", a: "Points are earned by completing on-chain actions: daily tasks (+10 pts each), maintaining streaks (+5 pts per day), playing 2048 (+50 pts per game), and high score bonuses." },
+      { q: "How do I earn points?", a: "Points are earned by completing on-chain actions: daily tasks (+10 pts each) and maintaining streaks (+5 pts per day)." },
       { q: "What is the streak system?", a: "Your streak tracks consecutive days of on-chain activity. A 7-day streak unlocks soulbound NFT minting. Streaks are tracked per wallet on the NikBase contract, and the day rolls over at 00:00 UTC." },
-      { q: "How are points calculated?", a: "Points combine task actions, a daily streak bonus, game plays and score bonuses. Your totals are ranked on the Leaderboard page." },
+      { q: "How are points calculated?", a: "Points combine task actions and a daily streak bonus. Your totals are ranked on the Leaderboard page." },
     ],
   },
   {
@@ -48,22 +47,12 @@ const faqs = [
     ],
   },
   {
-    category: "2048 Game",
-    icon: Gamepad2,
-    color: "var(--accent-text)",
-    items: [
-      { q: "How does on-chain 2048 work?", a: "Every game play records your score to the Game2048 contract. Scores are permanently stored on-chain. Your play count and high score are tracked across all supported networks." },
-      { q: "What are the milestones?", a: "Milestones are unlocked at tile values: 16, 32, 64, 128, 256, 512, 1024, and 2048. Each milestone is recorded on-chain as a badge of achievement." },
-      { q: "Can I play on any network?", a: "2048 is deployed on 11+ networks. Use the network selector in the game UI to choose which chain to record your score on." },
-    ],
-  },
-  {
     category: "Security",
     icon: Shield,
     color: "var(--success)",
     items: [
       { q: "Is my wallet safe?", a: "DGDreams never holds your private keys. All transactions are signed by your wallet. Always verify the network and contract address before signing." },
-      { q: "What contracts do you use?", a: "We use NikBase contracts for daily tasks and Game2048 contracts for game scoring. All contracts are open-source and verified on their respective block explorers." },
+      { q: "What contracts do you use?", a: "We use NikBase contracts for daily tasks and the soulbound badge contracts behind the gallery. All contracts are open-source and verified on their respective block explorers." },
       { q: "How is my data stored?", a: "On-chain data (scores, streaks, actions) is stored permanently on the blockchain. Off-chain preferences (social links, settings) are stored in your browser's localStorage." },
     ],
   },

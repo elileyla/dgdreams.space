@@ -92,7 +92,7 @@ SOFTWARE.`}
             <h2 className="text-sm font-semibold text-[var(--text-bright)]">Smart Contracts</h2>
           </div>
           <p className="text-xs text-[var(--text-tertiary)] leading-relaxed">
-            The smart contracts used by DGDreams (NikBase, Game2048, Soulbound NFT) are open-source
+            The smart contracts used by DGDreams (NikBase, Soulbound NFT) are open-source
             and verified on their respective block explorers. They are licensed under MIT unless
             otherwise specified. Contract source code is available on GitHub for audit and review.
           </p>

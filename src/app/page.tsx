@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "DGDreams — Multi-Chain On-Chain Activity Terminal",
     description:
-      "Daily on-chain tasks across 25 networks. Build streaks, earn soulbound NFTs, play 2048 on-chain.",
+      "Daily on-chain tasks across 25 networks. Build streaks and earn soulbound NFTs.",
     url: "https://dgdreams.space",
     siteName: "DGDreams",
     type: "website",

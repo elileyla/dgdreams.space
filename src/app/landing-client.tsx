@@ -6,8 +6,6 @@ import { m, useReducedMotion } from "framer-motion";
 import SiteHeader from "@/components/site/SiteHeader";import {
   Globe,
   Flame,
-  Shield,
-  Gamepad2,
   ArrowRight,
   CheckCircle2,
   Trophy,
@@ -34,18 +32,6 @@ const features = [
     title: "Streaks that pay off",
     desc: "Keep a daily streak. Hit seven days to mint a soulbound badge that climbs from Bronze to Legend.",
     span: "",
-  },
-  {
-    icon: Shield,
-    title: "GenLayer contracts",
-    desc: "AI-validated price oracles and prediction markets, next to the EVM chains.",
-    span: "",
-  },
-  {
-    icon: Gamepad2,
-    title: "2048, on chain",
-    desc: "Play 2048, submit your score on chain and climb the leaderboard.",
-    span: "lg:col-span-2",
   },
 ];
 
@@ -149,9 +135,9 @@ export default function LandingPage() {
             Start your streak
             <ArrowRight className="w-4 h-4" />
           </Link>
-          <Link href="/how" className="btn-ghost">
+          <a href="#how" className="btn-ghost">
             How it works
-          </Link>
+          </a>
         </m.div>
 
         {/* The numbers */}
@@ -271,7 +257,7 @@ export default function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section className="relative z-10 py-14 px-6">
+      <section id="how" className="relative z-10 py-14 px-6">
         <div className="max-w-4xl mx-auto">
           <m.div {...fadeUp} transition={{ duration: 0.5 }} className="text-center mb-12">
             <p className="kicker mb-3">How it works</p>

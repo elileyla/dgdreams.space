@@ -7,9 +7,8 @@
  */
 const BASE = process.argv[2] || "http://localhost:3000";
 const PAGES = [
-  "/", "/dashboard", "/tasks", "/2048", "/leaderboard", "/profile",
-  "/litevm", "/litvm-market", "/genlayer", "/genlayer-escrow", "/genlayer-market",
-  "/genlayer-oracle", "/truthcourt", "/swap", "/activity",
+  "/", "/dashboard", "/tasks", "/leaderboard", "/gallery",
+  "/swap", "/deploy", "/litvm-market", "/sybil", "/bamboo", "/faq",
 ];
 
 const rows = [];
