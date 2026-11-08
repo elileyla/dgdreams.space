@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/litvm-market",
     "/tournaments",
     "/faq",
+    "/bamboo",
     "/terms",
     "/license",
   ];
