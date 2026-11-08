@@ -182,7 +182,7 @@ export default function SiteHeader() {
       {open ? (
         <div
           id="site-menu"
-          className="md:hidden px-5 pb-5 pt-2"
+          className="md:hidden absolute inset-x-0 top-full px-5 pb-5 pt-2 shadow-[0_24px_40px_-24px_rgba(0,0,0,0.6)]"
           style={{
             background: "color-mix(in srgb, var(--bg-base) 94%, transparent)",
             backdropFilter: "blur(14px)",
