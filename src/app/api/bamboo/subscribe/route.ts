@@ -40,14 +40,17 @@ export async function POST(request: Request) {
   try {
     const r = await addEmail(email);
     if (!r.configured) {
-      // Redis is optional; the page still works without it.
+      // The database is optional; the page still works without it.
       return Response.json({ error: "not_configured" }, { status: 503, headers: CORS });
     }
     return Response.json(
       { ok: true, fresh: r.fresh, count: await count() },
       { headers: { ...CORS, "Cache-Control": "no-store" } }
     );
-  } catch {
+  } catch (e) {
+    // Upstash is optional, so the page survives; log the cause so the failure
+    // is visible in the function logs instead of behind an opaque 500.
+    console.error("[bamboo/subscribe] store_failed:", e instanceof Error ? e.message : e);
     return Response.json({ error: "store_failed" }, { status: 500, headers: CORS });
   }
 }

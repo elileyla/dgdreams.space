@@ -1,57 +1,72 @@
 /**
  * BambooDrop — email subscriptions.
  *
- * Upstash Redis over its REST API, no npm package. Credentials come from the
- * Vercel environment (never the repo):
+ * Originally backed by Upstash Redis over its REST API. The instance behind
+ * those credentials is gone (its hostname no longer resolves — the failure
+ * mode the old 500 was hiding), and this site already runs a real Postgres,
+ * so subscribers now live in Neon next to everything else:
  *
- *   UPSTASH_REDIS_REST_URL
- *   UPSTASH_REDIS_REST_TOKEN
+ *   bamboo_subscribers (email timestamptz)
  *
- * When they are absent the feature degrades to a no-op instead of throwing,
- * and /api/bamboo/subscribe reports `configured: false`.
+ * The functions keep the same shape and the same degradation: no DATABASE_URL
+ * means the feature reports `configured: false` and the page works anyway.
  */
 
-const URL = process.env.UPSTASH_REDIS_REST_URL;
-const TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+import { db } from "@/db";
+import { sql } from "drizzle-orm";
 
-export const isConfigured = (): boolean => Boolean(URL && TOKEN);
+export const isConfigured = (): boolean => Boolean(process.env.DATABASE_URL);
 
-async function cmd(...args: Array<string | number>): Promise<unknown> {
-  const res = await fetch(`${URL}`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(args),
-    signal: AbortSignal.timeout(6000),
-    cache: "no-store",
-  });
-  if (!res.ok) throw new Error(`Upstash ${res.status}: ${await res.text()}`);
-  return (await res.json()).result;
+/**
+ * drizzle returns a pg QueryResult for `execute`, but a plain row array with
+ * some drivers — accept both.
+ */
+function rowsOf(result: unknown): Array<Record<string, unknown>> {
+  if (Array.isArray(result)) return result as Array<Record<string, unknown>>;
+  const rows = (result as { rows?: unknown[] } | null)?.rows;
+  return Array.isArray(rows) ? (rows as Array<Record<string, unknown>>) : [];
 }
 
-const keyOf = (email: string) => "bd:sub:" + email;
+let ready: Promise<void> | null = null;
 
-/** One set holds every subscriber; each email also has its own hash. */
-const hashKey = () => "bd:subs:list";
+/** Idempotent; a failed attempt is retried on the next request. */
+function ensureTable(): Promise<void> {
+  if (!ready) {
+    ready = db
+      .execute(sql`
+        CREATE TABLE IF NOT EXISTS bamboo_subscribers (
+          email TEXT PRIMARY KEY,
+          created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        )
+      `)
+      .then(() => undefined)
+      .catch((error: unknown) => {
+        ready = null;
+        throw error;
+      });
+  }
+  return ready;
+}
 
-/** Add an email. `fresh` is true only when it was not already stored. */
+/** Returns whether the email was new. */
 export async function addEmail(
   email: string
 ): Promise<{ ok: boolean; configured: boolean; fresh: boolean }> {
   if (!isConfigured()) return { ok: false, configured: false, fresh: false };
 
-  const h = keyOf(email);
-  const added = await cmd("SADD", hashKey(), h);
-  if (Number(added) === 0) return { ok: true, configured: true, fresh: false };
-
-  await cmd("HSET", h, "email", email, "at", new Date().toISOString());
-  await cmd("EXPIRE", h, 60 * 60 * 24 * 365 * 2);
-  return { ok: true, configured: true, fresh: true };
+  await ensureTable();
+  const result = await db.execute(sql`
+    INSERT INTO bamboo_subscribers (email)
+    VALUES (${email})
+    ON CONFLICT (email) DO NOTHING
+    RETURNING email
+  `);
+  return { ok: true, configured: true, fresh: rowsOf(result).length > 0 };
 }
 
 export async function count(): Promise<number> {
   if (!isConfigured()) return 0;
-  return Number(await cmd("SCARD", hashKey())) || 0;
+  await ensureTable();
+  const rows = rowsOf(await db.execute(sql`SELECT COUNT(*) AS n FROM bamboo_subscribers`));
+  return Number(rows[0]?.n ?? 0) || 0;
 }
