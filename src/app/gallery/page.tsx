@@ -24,7 +24,8 @@ import { waitForGenLayerTx } from "@/lib/genlayer/tasks";
 /**
  * The Grand Tour — soulbound badges on every network.
  *
- * Twenty-one networks. Pricing, per chain and per UTC day: every wallet's
+ * Every supported network at once (Elysium mainnet stands in for its
+ * retired testnet sibling). Pricing, per chain and per UTC day: every wallet's
  * first mint of the day is free (gas only), the second costs the chain's
  * "1 cent" rate, and every extra mint doubles from there. Transfers are
  * blocked on chain, so a badge can never leave its wallet. The card grid
@@ -32,7 +33,12 @@ import { waitForGenLayerTx } from "@/lib/genlayer/tasks";
  * reads as "the tour", not as a foreign NFT page.
  */
 
-const NETWORKS = [...mainnetNetworks, ...testnetNetworks];
+const NETWORKS = [
+  ...mainnetNetworks,
+  // Elysium testnet is retired from the tour now that Elysium mainnet
+  // (99901) is live — the mainnet card covers the chain.
+  ...testnetNetworks.filter((n) => n.id !== 99801),
+];
 
 // ERC-721 `Transfer(address,address,uint256)` — a mint is the log where `from`
 // is the zero address, and its last topic is the token id (the edition number).

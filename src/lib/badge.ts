@@ -27,6 +27,7 @@ export const BADGE_ADDR: Record<number, `0x${string}` | ""> = {
   6281971: "0x12d6cfc9659c613dae006072cf9f5524bf60055d",
   99801: "0xff3a00cf7d83723f88097bcc8230ae37b3adf3ff",
   1440000: "0xc288b68022e752d97e4395ecba61c2079ce692ad",
+  99901: "0xdbee9ea39fedd197d224ea7520a20b4434635a6a",
 };
 
 export const BADGE_ABI = [
