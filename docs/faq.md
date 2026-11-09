@@ -10,7 +10,7 @@ No. Your **wallet is your identity**. Connect with MetaMask and you're in.
 
 ### Which networks are supported?
 
-24 total: Ethereum, Base, Arbitrum One, OP Mainnet, Soneium, HyperEVM, Unichain, Tempo, Robinhood, Ink, Arc, BNB Chain and opBNB on mainnet, plus Sepolia, Base Sepolia, GIWA Sepolia, Arbitrum Sepolia, LitVM Liteforge, GenLayer Bradbury, ARC Testnet, SimpleChain, Maroo Testnet, DogeOS Chikyū Testnet and Elysium Testnet.
+25 total: Ethereum, Base, Arbitrum One, OP Mainnet, Soneium, HyperEVM, Unichain, Tempo, Robinhood, Ink, Arc, Elysium, BNB Chain and opBNB on mainnet, plus Sepolia, Base Sepolia, GIWA Sepolia, Arbitrum Sepolia, LitVM Liteforge, GenLayer Bradbury, ARC Testnet, SimpleChain, Maroo Testnet, DogeOS Chikyū Testnet and Elysium Testnet.
 
 ### Do I need money to use it?
 

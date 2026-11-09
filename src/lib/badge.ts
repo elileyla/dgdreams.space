@@ -120,6 +120,7 @@ export const BADGE_IMAGE: Record<number, string> = {
   450815: "/output-premium/maroo.png",
   6281971: "/output-premium/dogeos.png",
   99801: "/output-premium/elysium.png",
+  99901: "/output-premium/elysium.png",
   1440000: "/output-premium/xrplevm.png",
 };
 

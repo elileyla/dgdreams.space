@@ -88,6 +88,19 @@ const NETWORKS = [
     name: "Elysium Testnet",
   },
   {
+    id: 99901,
+    // Same explorer stack as the Elysium testnet above — Etherscan-compatible
+    // API, live-checked keyless (module=proxy / stats answer without a key).
+    // forge's named "etherscan" verifier rejects the empty foundry key entry
+    // ("ETHERSCAN_API_KEY must be set"), but the generic "custom" verifier
+    // speaks the same API and verifies cleanly.
+    chainFlag: "99901",
+    verifier: "custom",
+    verifierUrl: "https://elysium.kinetiq.xyz/explorer/api",
+    keyless: true,
+    name: "Elysium",
+  },
+  {
     id: 1440000,
     // XRPL EVM's explorer is self-hosted Blockscout; the legacy Etherscan-
     // compatible API lives at /api (keyless — live-checked). forge's

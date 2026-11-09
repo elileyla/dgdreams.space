@@ -14,6 +14,7 @@ const CHAINS = [
   [4441, "LITVM Liteforge"], [4221, "GenLayer Bradbury"],
   [1913, "SimpleChain"], [5042002, "ARC Testnet"], [1913, "SimpleChain"],
   [450815, "Maroo Testnet"], [6281971, "DogeOS Testnet"],
+  [99801, "Elysium Testnet"], [99901, "Elysium"],
 ];
 
 const DUMMY = "0x000000000000000000000000000000000000dEaD";

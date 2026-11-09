@@ -174,6 +174,7 @@ User clicks "Start" → DailyTaskPanel opens
 | **Arbitrum One** | **42161** | **ETH** |
 | **OP Mainnet** | **10** | **ETH** |
 | **Soneium** | **1868** | **ETH** |
+| **Elysium** | **99901** | **HYPE** |
 
 ### Testnet
 | Network | Chain ID | Currency |

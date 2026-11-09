@@ -63,9 +63,11 @@ maroo_testnet = { key = "${MAROO_API_KEY}", chain = 450815, url = "https://explo
 # with no apikey at all — hence the literal empty key (an env placeholder value
 # leaked into the verification request and broke it).
 dogeos_testnet = { key = "", chain = 6281971, url = "https://dogeos-testnet.l2scan.co/api" }
-# Elysium's explorer is Blockscout-based, but its verification API requires a
-# partner access code — pass it as key="<code>" when verifying.
+# Elysium's explorer serves the Etherscan-compatible API at /explorer/api and
+# verifies keyless (live-verified) — verify through forge's generic "custom"
+# verifier, since its named "etherscan" verifier rejects an empty key.
 elysium_testnet = { key = "", chain = 99801, url = "https://testnet.elysium.kinetiq.xyz/explorer/api" }
+elysium = { key = "", chain = 99901, url = "https://elysium.kinetiq.xyz/explorer/api" }
 arbitrum_sepolia = { key = "${ARBITRUM_API_KEY}", chain = 421614 }
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md

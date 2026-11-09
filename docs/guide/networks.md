@@ -20,6 +20,7 @@ DGDreams supports **21 networks** — 14 mainnets and 7 testnets — all from on
 | **OP Mainnet** | 10 | ETH |
 | **Soneium** | 1868 | ETH |
 | **XRP EVM** | 1440000 | XRP |
+| **Elysium** | 99901 | HYPE |
 
 ## 🟡 Testnet
 
@@ -134,13 +135,43 @@ addresses are skipped unless you pass `--force`) and
 `node scripts/verify-l2.mjs --only 6281971` re-verifies them — verification goes
 through the Blockscout API at `https://dogeos-testnet.l2scan.co/api`.
 
+### Elysium (mainnet)
+
+Elysium is live on mainnet. The chain details are from Kinetiq's docs
+(https://elysium.kinetiq.xyz/docs/):
+
+| Field | Value |
+|---|---|
+| Chain ID (EVM) | `99901` (`0x1863d`, verified live) |
+| RPC | `https://rpc.elysium.kinetiq.xyz` |
+| Explorer | https://elysium.kinetiq.xyz/explorer |
+| Bridge | https://elysium.kinetiq.xyz/bridge |
+| Docs | https://elysium.kinetiq.xyz/docs/ |
+| X | https://x.com/Enter_Elysium |
+| Native gas | **HYPE** (native, 18 decimals) |
+
+Contract addresses on Elysium mainnet are recorded automatically the first time
+you run `node scripts/deploy-l2.mjs --only 99901`, and verified with
+`node scripts/verify-l2.mjs --only 99901`. The explorer's Etherscan-compatible
+API at `https://elysium.kinetiq.xyz/explorer/api` verifies keyless through
+forge's generic `custom` verifier (its named `etherscan` verifier rejects the
+empty key the explorer can do without).
+
+All three DGDreams contracts are **live on Elysium mainnet and verified**:
+
+| Contract | Address |
+|---|---|
+| `NikBase` | [`0x68bb9775…1e733`](https://elysium.kinetiq.xyz/address/0x68bb9775b11551310d7a37aae52e6505a0e1e733) |
+| `Game2048` | [`0xaf1f1ec7…7ebab0`](https://elysium.kinetiq.xyz/address/0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0) |
+| `SoulboundStreak` | [`0x344ad6a0…798e3b`](https://elysium.kinetiq.xyz/address/0x344ad6a0d3aeb4baa8d853c932fbebeb4e798e3b) |
+
 ### Elysium testnet
 
 Elysium is Kinetiq's general-purpose **DeFi chain aligned with Hyperliquid**: an
 Arbitrum Orbit (Nitro/ArbOS) L2 that settles to HyperEVM, runs co-located with
 HyperCore and uses 100 ms blocks. Native gas is **HYPE**, bridged 1:1 as native
 gas from HyperEVM — there is no wrapper asset. DGDreams tracks the **testnet**
-(mainnet is pre-launch; its chain ID and explorer are published at launch):
+(sibling of the Elysium **mainnet** — chain `99901` — covered above):
 
 | Field | Value |
 |---|---|

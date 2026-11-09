@@ -350,13 +350,30 @@ export const dogeosTestnetChain = /*#__PURE__*/ defineChain({
 });
 
 /**
- * Elysium Testnet — Kinetiq's general-purpose DeFi chain: an Arbitrum Orbit
- * (Nitro/ArbOS) L2 settling to HyperEVM testnet (chain 998), co-located with
- * HyperCore and running 100 ms blocks. Native gas is **HYPE**, bridged 1:1 as
- * native gas from HyperEVM — no wrapper token. Chain ID live-verified:
- * eth_chainId returns 0x185d9 (99801). Faucet:
- * https://testnet.elysium.kinetiq.xyz/faucet · X: https://x.com/Enter_Elysium
- * Mainnet is pre-launch (published at launch).
+ * Elysium — Kinetiq's general-purpose DeFi chain: an Arbitrum Orbit
+ * (Nitro/ArbOS) L2 settling to HyperEVM (chain 999), co-located with
+ * HyperCore and running 100 ms blocks with a 300 Mgas/s execution target.
+ * Native gas is **HYPE**, bridged 1:1 as native gas from HyperEVM — no
+ * wrapper token. Live-verified: eth_chainId returns 0x1863d (99901). Docs:
+ * https://elysium.kinetiq.xyz/docs/ · X: https://x.com/Enter_Elysium
+ * Testnet sibling: chain 99801 (elysiumTestnetChain).
+ */
+export const elysiumMainnetChain = /*#__PURE__*/ defineChain({
+  id: 99901,
+  name: "Elysium",
+  nativeCurrency: { decimals: 18, name: "HYPE", symbol: "HYPE" },
+  rpcUrls: {
+    default: { http: ["https://rpc.elysium.kinetiq.xyz"] },
+    public: { http: ["https://rpc.elysium.kinetiq.xyz"] },
+  },
+  blockExplorers: {
+    default: { name: "Elysium Explorer", url: "https://elysium.kinetiq.xyz/explorer" },
+  },
+});
+
+/**
+ * Elysium Testnet — same Orbit stack as Elysium mainnet; only the endpoints
+ * and deployed addresses differ.
  */
 export const elysiumTestnetChain = /*#__PURE__*/ defineChain({
   id: 99801,
@@ -427,6 +444,7 @@ export const GAME2048_CONTRACTS: Record<number, `0x${string}`> = {
   6281971: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
   99801: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
   1440000: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
+  99901: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
 };
 
 export const NIKBASE_CONTRACTS: Record<number, `0x${string}`> = {
@@ -453,6 +471,7 @@ export const NIKBASE_CONTRACTS: Record<number, `0x${string}`> = {
   6281971: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
   99801: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
   1440000: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
+  99901: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
 };
 
 function makeNetworkConfig(
@@ -558,6 +577,11 @@ export const mainnetNetworks: NetworkConfig[] = [
     color: "#23292F",
     logo: "/logos/xrplevm.png",
   }),
+  makeNetworkConfig(elysiumMainnetChain, {
+    shortName: "ELYSIUM",
+    color: "#2B8FB6",
+    logo: "/logos/elysium.svg",
+  }),
 ];
 
 export const testnetNetworks: NetworkConfig[] = [
@@ -634,6 +658,7 @@ export const allChains = [
   optimismChain,
   soneiumChain,
   xrpEvmChain,
+  elysiumMainnetChain,
   giwaSepoliaChain,
   liteforgeChain,
   simpleChain,

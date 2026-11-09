@@ -77,6 +77,7 @@ const CHAINS = {
   91342: { label: "GIWA Sepolia", attempts: [bs("https://sepolia-explorer.giwa.io"), bs("https://sepolia.giwa.io")] },
   450815: { label: "Maroo", attempts: [bs("https://explorer-testnet.maroo.io/blockscout")] },
   6281971: { label: "DogeOS Testnet", attempts: [{ kind: "blockscout", url: "https://dogeos-testnet.l2scan.co/api", skipIsVerifiedCheck: true }] },
+  99901: { label: "Elysium", attempts: [bs("https://elysium.kinetiq.xyz/explorer")] },
 };
 
 // ---- env ----
