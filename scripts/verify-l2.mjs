@@ -79,18 +79,9 @@ const NETWORKS = [
     name: "DogeOS Testnet",
   },
   {
-    id: 99801,
-    // Elysium's explorer is Blockscout-based but its verification API needs a
-    // partner access code — pass it as the API key once granted.
-    chainFlag: "99801",
-    verifier: "blockscout",
-    verifierUrl: "https://testnet.elysium.kinetiq.xyz/explorer/api",
-    name: "Elysium Testnet",
-  },
-  {
     id: 99901,
-    // Same explorer stack as the Elysium testnet above — Etherscan-compatible
-    // API, live-checked keyless (module=proxy / stats answer without a key).
+    // Elysium's explorer serves the Etherscan-compatible API at /explorer/api,
+    // live-checked keyless (module=proxy / stats answer without a key).
     // forge's named "etherscan" verifier rejects the empty foundry key entry
     // ("ETHERSCAN_API_KEY must be set"), but the generic "custom" verifier
     // speaks the same API and verifies cleanly.

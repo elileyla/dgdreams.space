@@ -6,17 +6,25 @@ import { useAccount, useDisconnect } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { Wallet } from "lucide-react";
 
-import { MORE_NAV, PRIMARY_NAV, type NavItem } from "@/lib/nav";
+import {
+  LEGAL_NAV,
+  MORE_GROUPS,
+  PRIMARY_NAV,
+  type NavGroup,
+  type NavItem,
+} from "@/lib/nav";
 import { BrandMark } from "@/components/site/Brand";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 /**
  * AppRail — the 64px icon rail on the left.
  *
- * The whole menu, directly in the rail: the daily loop (Today / Ritual /
- * Ranks), a divider, then everything else. Icons only, with the label as a
- * tooltip, so the rail never becomes a second navigation bar and nothing
- * hides behind a "More" sheet.
+ * The rail reads in labeled bands: the daily loop on top, then the grouped
+ * rest of the menu with hairline separators between the bands, and the quiet
+ * help/legal pages pinned near the bottom at half strength. Icons only, with
+ * the label as a tooltip, so the rail never becomes a second navigation bar.
+ * The active page gets a slim accent bar on the rail's edge, so "where am I"
+ * reads from across the room.
  */
 /**
  * The wallet, as one square.
@@ -59,6 +67,17 @@ function RailWallet() {
   );
 }
 
+/** A hairline separator between the rail's bands. */
+function RailDivider({ className = "" }: { className?: string }) {
+  return (
+    <span
+      aria-hidden
+      className={`h-px w-8 shrink-0 ${className}`}
+      style={{ background: "var(--border-default)" }}
+    />
+  );
+}
+
 export default function AppRail() {
   const pathname = usePathname();
 
@@ -66,8 +85,9 @@ export default function AppRail() {
     pathname === href || pathname.startsWith(`${href}/`);
 
   // One rail link. Icons only, with the label as a tooltip, so the rail holds
-  // the entire menu at a constant 64px.
-  const renderLink = (item: NavItem) => {
+  // the entire menu at a constant 64px. The active link gets both the filled
+  // pill and a slim accent bar on the rail edge — two signals, one glance.
+  const renderLink = (item: NavItem, { quiet = false } = {}) => {
     const Icon = item.icon;
     const active = isActive(item.href);
     return (
@@ -77,7 +97,7 @@ export default function AppRail() {
         aria-label={item.label}
         aria-current={active ? "page" : undefined}
         title={item.label}
-        className="flex items-center justify-center w-10 h-10 rounded-[12px] transition-colors"
+        className="group relative flex items-center justify-center w-10 h-10 rounded-[12px] transition-colors"
         style={{
           background: active ? "var(--accent-muted)" : "transparent",
           border: `1px solid ${
@@ -85,13 +105,37 @@ export default function AppRail() {
               ? "color-mix(in srgb, var(--accent) 36%, transparent)"
               : "transparent"
           }`,
-          color: active ? "var(--text-bright)" : "var(--text-tertiary)",
+          color: active
+            ? "var(--text-bright)"
+            : quiet
+              ? "var(--text-faint)"
+              : "var(--text-tertiary)",
         }}
       >
-        <Icon className="w-[18px] h-[18px]" strokeWidth={1.75} />
+        {active ? (
+          <span
+            aria-hidden
+            className="absolute -left-3 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-full"
+            style={{ background: "var(--accent)" }}
+          />
+        ) : null}
+        <Icon
+          className={quiet ? "w-4 h-4" : "w-[18px] h-[18px]"}
+          strokeWidth={1.75}
+        />
       </Link>
     );
   };
+
+  /** One grouped band: its items, tightly packed. */
+  const renderGroup = (group: NavGroup, { quiet = false } = {}) => (
+    <div key={group.title} className="flex flex-col items-center gap-1">
+      {group.items.map((item) => renderLink(item, { quiet }))}
+    </div>
+  );
+
+  const [toolGroup, playGroup] = MORE_GROUPS;
+  const legalGroup = MORE_GROUPS[MORE_GROUPS.length - 1];
 
   return (
     <nav
@@ -111,20 +155,26 @@ export default function AppRail() {
         <BrandMark size={26} />
       </Link>
 
-      {/* Primary destinations — the daily loop */}
-      {PRIMARY_NAV.map(renderLink)}
+      {/* The daily loop */}
+      {PRIMARY_NAV.map((item) => renderLink(item))}
 
-      {/* Divider — the daily loop above, the rest of the menu below */}
-      <span
-        aria-hidden
-        className="my-2 h-px w-8 shrink-0"
-        style={{ background: "var(--border-default)" }}
-      />
+      <RailDivider className="my-2" />
 
-      {/* The rest of the menu, directly in the rail (no "More" sheet) */}
-      {MORE_NAV.map(renderLink)}
+      {/* Tools band */}
+      {toolGroup ? renderGroup(toolGroup) : null}
+
+      <RailDivider className="my-2" />
+
+      {/* Collect band */}
+      {playGroup ? renderGroup(playGroup) : null}
 
       <div className="flex-1" />
+
+      {/* Help & legal — quiet reference pages, pinned above the controls */}
+      <RailDivider className="my-2" />
+      {legalGroup ? renderGroup(legalGroup, { quiet: true }) : null}
+
+      <RailDivider className="my-2" />
 
       {/* Theme + wallet — the only two controls that live in the chrome */}
       <div className="flex flex-col items-center gap-2">

@@ -27,7 +27,7 @@
 
 ## Overview
 
-**DGDreams** is a unified dashboard where users connect their wallet once and execute daily on-chain tasks across **21 blockchain networks** — Ethereum, Base, Arbitrum One, OP Mainnet, Soneium, HyperEVM, Unichain, Tempo, Robinhood, Ink, Arc, XRP EVM, BNB Chain and opBNB on mainnet, plus testnets including **GenLayer Bradbury**, **Maroo Testnet**, **DogeOS Chikyū Testnet**, **Elysium Testnet**, LitVM, GIWA, and SimpleChain.
+**DGDreams** is a unified dashboard where users connect their wallet once and execute daily on-chain tasks across **21 blockchain networks** — Ethereum, Base, Arbitrum One, OP Mainnet, Soneium, HyperEVM, Unichain, Tempo, Robinhood, Ink, Arc, XRP EVM, Elysium, BNB Chain and opBNB on mainnet, plus testnets including **GenLayer Bradbury**, **Maroo Testnet**, **DogeOS Chikyū Testnet**, LitVM, GIWA, and SimpleChain.
 
 | Feature | Description |
 |---|---|
@@ -185,7 +185,6 @@ User clicks "Start" → DailyTaskPanel opens
 | SimpleChain | 1913 | SIM |
 | **Maroo Testnet** | **450815** | **tOKRW** |
 | **DogeOS Chikyū Testnet** | **6281971** | **DOGE** |
-| **Elysium Testnet** | **99801** | **HYPE** |
 
 > 💡 **Arbitrum and OP are the cheapest networks here** — a full 6-in-1 run costs
 > well under a cent, so they are the best place to start.

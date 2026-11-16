@@ -25,7 +25,6 @@ export const BADGE_ADDR: Record<number, `0x${string}` | ""> = {
   91342: "0xcb1b3a864d384d5ad42b6f5b81825ab084444d9c", 4441: "0x76423ec7eaad5fdb349e6d77d760b28830436561",
   1913: "0xd3e31c08423a537b4d0e108971dc715daaab4893", 4221: "0x8A32da709dA16DF8c7039dA22d0688a6817587E4", 450815: "0xeffc9f6951208d49afe1b9b9c8b98229a24be8bc",
   6281971: "0x12d6cfc9659c613dae006072cf9f5524bf60055d",
-  99801: "0xff3a00cf7d83723f88097bcc8230ae37b3adf3ff",
   1440000: "0xc288b68022e752d97e4395ecba61c2079ce692ad",
   99901: "0xdbee9ea39fedd197d224ea7520a20b4434635a6a",
 };
@@ -120,7 +119,6 @@ export const BADGE_IMAGE: Record<number, string> = {
   4221: "/output-premium/genlayer.png",
   450815: "/output-premium/maroo.png",
   6281971: "/output-premium/dogeos.png",
-  99801: "/output-premium/elysium.png",
   99901: "/output-premium/elysium.png",
   1440000: "/output-premium/xrplevm.png",
 };

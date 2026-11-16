@@ -6,7 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, m,  useReducedMotion } from "framer-motion";
 import { Ellipsis, X } from "lucide-react";
 
-import { MORE_NAV } from "@/lib/nav";
+import { MORE_GROUPS } from "@/lib/nav";
 
 /**
  * The overflow sheet.
@@ -82,40 +82,50 @@ export default function MoreSheet({
                   <X className="w-4 h-4" />
                 </button>
               </div>
-              <div className="p-3 space-y-0.5">
-                {MORE_NAV.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className="flex items-start gap-3 px-3 py-2.5 rounded-[12px] transition-colors hover:bg-[var(--bg-strong)]"
+              <div className="p-3 pb-5">
+                {MORE_GROUPS.map((group) => (
+                  <div key={group.title} className="mt-3 first:mt-1">
+                    <p
+                      className="kicker px-3 pb-1"
+                      style={{ color: "var(--text-faint)" }}
                     >
-                      <Icon
-                        className="w-[18px] h-[18px] mt-0.5 flex-shrink-0"
-                        strokeWidth={1.75}
-                        style={{ color: "var(--text-tertiary)" }}
-                      />
-                      <span className="min-w-0">
-                        <span
-                          className="block text-[14px] font-medium"
-                          style={{ color: "var(--text-primary)" }}
+                      {group.title}
+                    </p>
+                    {group.items.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setOpen(false)}
+                          className="flex items-start gap-3 px-3 py-2.5 rounded-[12px] transition-colors hover:bg-[var(--bg-strong)]"
                         >
-                          {item.label}
-                        </span>
-                        {item.blurb ? (
-                          <span
-                            className="block text-[12px] mt-0.5"
-                            style={{ color: "var(--text-faint)" }}
-                          >
-                            {item.blurb}
+                          <Icon
+                            className="w-[18px] h-[18px] mt-0.5 flex-shrink-0"
+                            strokeWidth={1.75}
+                            style={{ color: "var(--text-tertiary)" }}
+                          />
+                          <span className="min-w-0">
+                            <span
+                              className="block text-[14px] font-medium"
+                              style={{ color: "var(--text-primary)" }}
+                            >
+                              {item.label}
+                            </span>
+                            {item.blurb ? (
+                              <span
+                                className="block text-[12px] mt-0.5"
+                                style={{ color: "var(--text-faint)" }}
+                              >
+                                {item.blurb}
+                              </span>
+                            ) : null}
                           </span>
-                        ) : null}
-                      </span>
-                    </Link>
-                  );
-                })}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                ))}
               </div>
             </m.div>
           </>

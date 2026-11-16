@@ -35,9 +35,7 @@ import { waitForGenLayerTx } from "@/lib/genlayer/tasks";
 
 const NETWORKS = [
   ...mainnetNetworks,
-  // Elysium testnet is retired from the tour now that Elysium mainnet
-  // (99901) is live — the mainnet card covers the chain.
-  ...testnetNetworks.filter((n) => n.id !== 99801),
+  ...testnetNetworks,
 ];
 
 // ERC-721 `Transfer(address,address,uint256)` — a mint is the log where `from`

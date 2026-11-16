@@ -356,7 +356,6 @@ export const dogeosTestnetChain = /*#__PURE__*/ defineChain({
  * Native gas is **HYPE**, bridged 1:1 as native gas from HyperEVM — no
  * wrapper token. Live-verified: eth_chainId returns 0x1863d (99901). Docs:
  * https://elysium.kinetiq.xyz/docs/ · X: https://x.com/Enter_Elysium
- * Testnet sibling: chain 99801 (elysiumTestnetChain).
  */
 export const elysiumMainnetChain = /*#__PURE__*/ defineChain({
   id: 99901,
@@ -369,24 +368,6 @@ export const elysiumMainnetChain = /*#__PURE__*/ defineChain({
   blockExplorers: {
     default: { name: "Elysium Explorer", url: "https://elysium.kinetiq.xyz/explorer" },
   },
-});
-
-/**
- * Elysium Testnet — same Orbit stack as Elysium mainnet; only the endpoints
- * and deployed addresses differ.
- */
-export const elysiumTestnetChain = /*#__PURE__*/ defineChain({
-  id: 99801,
-  name: "Elysium Testnet",
-  nativeCurrency: { decimals: 18, name: "HYPE", symbol: "HYPE" },
-  rpcUrls: {
-    default: { http: ["https://testnet-rpc.elysium.kinetiq.xyz"] },
-    public: { http: ["https://testnet-rpc.elysium.kinetiq.xyz"] },
-  },
-  blockExplorers: {
-    default: { name: "Elysium Explorer", url: "https://testnet.elysium.kinetiq.xyz/explorer" },
-  },
-  testnet: true,
 });
 
 export interface NetworkConfig {
@@ -442,9 +423,9 @@ export const GAME2048_CONTRACTS: Record<number, `0x${string}`> = {
   450815: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
   // DogeOS Chikyū Testnet — verified on dogeos-testnet.l2scan.co (Blockscout)
   6281971: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
-  99801: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
-  1440000: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
+  // Elysium — verified on elysium.kinetiq.xyz/explorer
   99901: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
+  1440000: "0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0",
 };
 
 export const NIKBASE_CONTRACTS: Record<number, `0x${string}`> = {
@@ -469,9 +450,9 @@ export const NIKBASE_CONTRACTS: Record<number, `0x${string}`> = {
   // Maroo Testnet — verified on explorer-testnet.maroo.io (Blockscout)
   450815: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
   6281971: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
-  99801: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
-  1440000: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
+  // Elysium — verified on elysium.kinetiq.xyz/explorer
   99901: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
+  1440000: "0x68bb9775b11551310d7a37aae52e6505a0e1e733",
 };
 
 function makeNetworkConfig(
@@ -629,12 +610,6 @@ export const testnetNetworks: NetworkConfig[] = [
     isTestnet: true,
     logo: "/logos/dogeos.svg",
   }),
-  makeNetworkConfig(elysiumTestnetChain, {
-    shortName: "ELYSIUM",
-    color: "#2B8FB6",
-    isTestnet: true,
-    logo: "/logos/elysium.svg",
-  }),
 ];
 
 export function getNetworkConfig(chainId: number): NetworkConfig | undefined {
@@ -665,7 +640,6 @@ export const allChains = [
   genlayerBradburyChain,
   marooTestnetChain,
   dogeosTestnetChain,
-  elysiumTestnetChain,
 ];
 
 export const dashboardNetworks = [

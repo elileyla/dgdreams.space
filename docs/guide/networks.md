@@ -32,7 +32,6 @@ DGDreams supports **21 networks** — 14 mainnets and 7 testnets — all from on
 | SimpleChain | 1913 | SIM |
 | **Maroo Testnet** | 450815 | tOKRW |
 | **DogeOS Chikyū Testnet** | 6281971 | DOGE |
-| **Elysium Testnet** | 99801 | HYPE |
 
 ## 💸 Cost
 
@@ -137,8 +136,11 @@ through the Blockscout API at `https://dogeos-testnet.l2scan.co/api`.
 
 ### Elysium (mainnet)
 
-Elysium is live on mainnet. The chain details are from Kinetiq's docs
-(https://elysium.kinetiq.xyz/docs/):
+Elysium is Kinetiq's general-purpose **DeFi chain aligned with Hyperliquid**: an
+Arbitrum Orbit (Nitro/ArbOS) L2 that settles to HyperEVM, runs co-located with
+HyperCore and uses 100 ms blocks. Native gas is **HYPE**, bridged 1:1 as native
+gas from HyperEVM — there is no wrapper asset. DGDreams tracks the **mainnet**
+(chain details from Kinetiq's docs, https://elysium.kinetiq.xyz/docs/):
 
 | Field | Value |
 |---|---|
@@ -164,27 +166,6 @@ All three DGDreams contracts are **live on Elysium mainnet and verified**:
 | `NikBase` | [`0x68bb9775…1e733`](https://elysium.kinetiq.xyz/address/0x68bb9775b11551310d7a37aae52e6505a0e1e733) |
 | `Game2048` | [`0xaf1f1ec7…7ebab0`](https://elysium.kinetiq.xyz/address/0xaf1f1ec78f94bf9b6facf876c77a51562b7ebab0) |
 | `SoulboundStreak` | [`0x344ad6a0…798e3b`](https://elysium.kinetiq.xyz/address/0x344ad6a0d3aeb4baa8d853c932fbebeb4e798e3b) |
-
-### Elysium testnet
-
-Elysium is Kinetiq's general-purpose **DeFi chain aligned with Hyperliquid**: an
-Arbitrum Orbit (Nitro/ArbOS) L2 that settles to HyperEVM, runs co-located with
-HyperCore and uses 100 ms blocks. Native gas is **HYPE**, bridged 1:1 as native
-gas from HyperEVM — there is no wrapper asset. DGDreams tracks the **testnet**
-(sibling of the Elysium **mainnet** — chain `99901` — covered above):
-
-| Field | Value |
-|---|---|
-| Chain ID (EVM) | `99801` (`0x185d9`, verified live) |
-| RPC | `https://testnet-rpc.elysium.kinetiq.xyz` |
-| Explorer | https://testnet.elysium.kinetiq.xyz/explorer |
-| Faucet | https://testnet.elysium.kinetiq.xyz/faucet |
-| Docs | https://testnet.elysium.kinetiq.xyz/docs/what-is-elysium |
-| X | https://x.com/Enter_Elysium |
-| Native gas | **HYPE** (native, 18 decimals) |
-
-Contract addresses on Elysium are recorded automatically the first time you run
-`node scripts/deploy-l2.mjs --only 99801`.
 
 ### XRP EVM Sidechain
 
