@@ -1,7 +1,7 @@
 # Deploys the site to the EC2 server by building locally and shipping only
 # .next (the t3.micro has 1 GB RAM — it cannot run the build itself).
 #
-#   pwsh scripts/deploy-ec2.ps1 [-KeyPath <pem>] [-Host <ssh host>]
+#   powershell scripts/deploy-ec2.ps1 [-KeyPath <pem>] [-Host <ssh host>]
 #
 # Prereqs on the server (already done once): git clone at /var/www/dgdreams,
 # .env, node_modules (npm ci), systemd unit `dgdreams`, nginx.
@@ -13,7 +13,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$root = $PSScriptRoot | Split-Path | Split-Path
+$root = $PSScriptRoot | Split-Path
 Push-Location $root
 try {
     Write-Host "== build (local) ==" -ForegroundColor Cyan
