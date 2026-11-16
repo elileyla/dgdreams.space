@@ -49,33 +49,15 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
-    return [
-      // The BambooDrop page is a full standalone HTML document (its own RTL
-      // layout, fonts and nav), so it is served from /public as-is instead of
-      // being rebuilt as a React page. /bamboo masks the index.html.
-      { source: "/bamboo", destination: "/bamboo/index.html" },
-    ];
+    // BambooDrop moved to its own site (bamboo.dgdreams.space, a second
+    // service on the same EC2 box). Nothing is proxied from this app.
+    return [];
   },
   async headers() {
     return [
       {
         source: "/(.*)",
         headers: securityHeaders,
-      },
-      {
-        // BambooDrop lives as a self-contained static page under /public.
-        // Its stickers never change, so pin them; the html/css/js stay
-        // revalidated so a copy tweak ships without a purge.
-        source: "/bamboo/stickers/:path*",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
-      },
-      {
-        source: "/bamboo/style.css",
-        headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }],
-      },
-      {
-        source: "/bamboo/script.js",
-        headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }],
       },
       {
         // Badge artwork and network logos are 2048->1024 quantized PNGs served

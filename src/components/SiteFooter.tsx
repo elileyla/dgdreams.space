@@ -44,7 +44,7 @@ interface FooterLink {
 }
 
 const links: FooterLink[] = [
-  { label: "BambooDrop", href: "/bamboo", external: false, icon: <LeafIcon /> },
+  { label: "BambooDrop", href: "https://bamboo.dgdreams.space", external: true, icon: <LeafIcon /> },
   { label: "Docs", href: "https://docs.dgdreams.space", external: true, icon: <DocsIcon /> },
   { label: "X / Twitter", href: "https://x.com/DGDreamsapp", external: true, icon: <XIcon /> },
   { label: "GitHub", href: "https://github.com/Misagh95/dgdreams", external: true, icon: <GithubIcon /> },
