@@ -11,11 +11,11 @@ import SiteFooter from "@/components/SiteFooter";
 /**
  * The three-zone layout.
  *
- *   rail (64px)  │  centre column  │  score rail (260px)
+ *   sidebar (240px, collapsible to 64px)  │  centre column  │  score rail (260px)
  *
- * The centre column is the only one that scrolls with the page. The rails
- * are sticky, so the navigation and the score are always one glance away
- * without repeating them on every card.
+ * The centre column is the only one that scrolls with the page. The sidebar
+ * and the score rail are sticky, so the navigation and the score are always
+ * one glance away without repeating them on every card.
  */
 export default function AppShell({
   children,
