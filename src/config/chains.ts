@@ -646,3 +646,13 @@ export const dashboardNetworks = [
   ...mainnetNetworks,
   ...testnetNetworks.filter((n) => n.id === 4221),
 ];
+
+/**
+ * Suggestion 1 — one source of truth for the network count.
+ *
+ * allChains is 15 mainnet + 6 testnet = 21 networks. Landing copy, stats,
+ * metadata and README used to disagree (21 / 23 / 24 / 25). Every display
+ * string must derive from NETWORK_COUNT instead of hard-coding a number.
+ */
+export const NETWORK_COUNT = allChains.length;
+export const SUPPORTED_NETWORK_COUNT = NETWORK_COUNT;
