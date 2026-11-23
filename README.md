@@ -2,7 +2,7 @@
   <img src="https://dgdreams.space/genlayer-spinner.svg" alt="GenLayer Spinner" width="80" />
   <h1 align="center">DGDreams — Web3 Space Terminal</h1>
   <p align="center">
-    Multi-chain daily task dashboard with <strong>25 networks</strong> • <img src="https://dgdreams.space/genlayer-spinner.svg" alt="" width="18" align="center" /> GenLayer AI contracts • NFT soulbound streaks
+    Multi-chain daily task dashboard with <strong>21 networks</strong> • <img src="https://dgdreams.space/genlayer-spinner.svg" alt="" width="18" align="center" /> GenLayer AI contracts • NFT soulbound streaks
   </p>
   <p align="center">
     <a href="https://dgdreams.space" target="_blank"><strong>🌐 Live Site</strong></a>
@@ -117,7 +117,7 @@ src/
 │   ├── DashboardLayout  # Shared layout wrapper
 │   └── ...
 ├── config/
-│   └── chains.ts        # All 25 chain definitions & NetworkConfig
+│   └── chains.ts        # All 21 chain definitions & NetworkConfig
 ├── lib/
 │   ├── utcDay.ts        # 00:00 UTC boundary shared by the whole app
 │   ├── sequence.ts      # Multi-step runner used by the 6-in-1 card

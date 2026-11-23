@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "DGDreams — Multi-Chain On-Chain Activity Terminal",
   description:
-    "Connect your wallet, execute daily check-ins across 24 blockchain networks, build streaks, mint soulbound NFTs and climb the leaderboard. Supports Ethereum, Base, HyperEVM, BNB Chain, GenLayer and more.",
+    "Connect your wallet, execute daily check-ins across 21 blockchain networks, build streaks, mint soulbound NFTs and climb the leaderboard. Supports Ethereum, Base, HyperEVM, BNB Chain, GenLayer and more.",
   openGraph: {
     title: "DGDreams — Multi-Chain On-Chain Activity Terminal",
     description:

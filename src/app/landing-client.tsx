@@ -3,7 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { m, useReducedMotion } from "framer-motion";
-import SiteHeader from "@/components/site/SiteHeader";import {
+import SiteHeader from "@/components/site/SiteHeader";
+import { NETWORK_COUNT } from "@/config/chains";
+import {
   Globe,
   Flame,
   ArrowRight,
@@ -147,7 +149,7 @@ export default function LandingPage() {
           className="grid grid-cols-3 gap-3 sm:gap-4 w-full max-w-lg mt-14"
         >
           {[
-            { value: "23", label: "Networks" },
+            { value: String(NETWORK_COUNT), label: "Networks" },
             { value: "3", label: "Daily rituals" },
             { value: "7d", label: "To first badge" },
           ].map((s) => (
