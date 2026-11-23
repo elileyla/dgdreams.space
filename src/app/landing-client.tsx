@@ -11,6 +11,7 @@ import {
   Flame,
   ArrowRight,
   CheckCircle2,
+  Rocket,
   Trophy,
   Wallet,
 } from "lucide-react";
@@ -26,14 +27,20 @@ import {
 const features = [
   {
     icon: Globe,
-    title: "21 networks, one place",
+    title: `${NETWORK_COUNT} networks, one place`,
     desc: "Run the same daily rituals on Ethereum, Base, Arbitrum, BNB Chain, GenLayer and more without switching apps.",
-    span: "lg:col-span-2",
+    span: "",
   },
   {
     icon: Flame,
     title: "Streaks that pay off",
     desc: "Keep a daily streak. Hit seven days to mint a soulbound badge that climbs from Bronze to Legend.",
+    span: "",
+  },
+  {
+    icon: Rocket,
+    title: "6-in-1 runner",
+    desc: "Check-in, GM and GN plus three deploys in one click — about 69% less gas than running them separately.",
     span: "",
   },
 ];
@@ -64,20 +71,32 @@ const steps = [
   },
 ];
 
+// Suggestion 4 — the full 21 networks from src/config/chains.ts
+// (15 mainnet + 6 testnet), with each chain's real colour from its
+// NetworkConfig. "Cheapest" is per README: Arbitrum and OP are the
+// cheapest networks here, a full 6-in-1 run costs well under a cent.
 const networks = [
-  { name: "Ethereum", logo: "/logos/ethereum.png" },
-  { name: "Base", logo: "/logos/base.svg" },
-  { name: "Arbitrum", logo: "/logos/arbitrum.png" },
-  { name: "OP Mainnet", logo: "/logos/optimism.png" },
-  { name: "HyperEVM", logo: "/logos/hyperliquid.png" },
-  { name: "BNB Chain", logo: "/logos/bnb.svg" },
-  { name: "Unichain", logo: "/logos/unichain.png" },
-  { name: "Arc", logo: "/logos/arc.png" },
-  { name: "GenLayer", logo: "/logos/genlayer.svg" },
-  { name: "Tempo", logo: "/logos/tempo.png" },
-  { name: "Maroo", logo: "/logos/maroo.png" },
-  { name: "DogeOS", logo: "/logos/dogeos.svg" },
-  { name: "Elysium", logo: "/logos/elysium.svg" },
+  { name: "Ethereum", logo: "/logos/ethereum.png", color: "var(--text-tertiary)", type: "Mainnet", cheapest: false },
+  { name: "Base", logo: "/logos/base.svg", color: "#0052FF", type: "Mainnet", cheapest: false },
+  { name: "Arbitrum", logo: "/logos/arbitrum.png", color: "#12AAFF", type: "Mainnet", cheapest: true },
+  { name: "OP Mainnet", logo: "/logos/optimism.png", color: "#FF0420", type: "Mainnet", cheapest: true },
+  { name: "HyperEVM", logo: "/logos/hyperliquid.png", color: "var(--danger)", type: "Mainnet", cheapest: false },
+  { name: "BNB Chain", logo: "/logos/bnb.svg", color: "#F0B90B", type: "Mainnet", cheapest: false },
+  { name: "opBNB", logo: "/logos/opbnb.svg", color: "#00B2A9", type: "Mainnet", cheapest: false },
+  { name: "Unichain", logo: "/logos/unichain.png", color: "#FC6C85", type: "Mainnet", cheapest: false },
+  { name: "Arc", logo: "/logos/arc.png", color: "var(--accent-text)", type: "Mainnet", cheapest: false },
+  { name: "GenLayer", logo: "/logos/genlayer.svg", color: "var(--accent-text)", type: "Testnet", cheapest: false },
+  { name: "Tempo", logo: "/logos/tempo.png", color: "var(--accent-text)", type: "Mainnet", cheapest: false },
+  { name: "Robinhood", logo: "/logos/robinhood.png", color: "#00C805", type: "Mainnet", cheapest: false },
+  { name: "Ink", logo: "/logos/ink.svg", color: "#0052FF", type: "Mainnet", cheapest: false },
+  { name: "Soneium", logo: "/logos/soneium.svg", color: "#1B2CFF", type: "Mainnet", cheapest: false },
+  { name: "XRP EVM", logo: "/logos/xrplevm.png", color: "#23292F", type: "Mainnet", cheapest: false },
+  { name: "Elysium", logo: "/logos/elysium.svg", color: "#2B8FB6", type: "Mainnet", cheapest: false },
+  { name: "Maroo", logo: "/logos/maroo.png", color: "#0096AA", type: "Testnet", cheapest: false },
+  { name: "DogeOS", logo: "/logos/dogeos.svg", color: "#E1B000", type: "Testnet", cheapest: false },
+  { name: "GIWA Sepolia", logo: "/logos/giwa.png", color: "var(--danger)", type: "Testnet", cheapest: false },
+  { name: "LitVM", logo: "/logos/litvm.png", color: "var(--accent-text)", type: "Testnet", cheapest: false },
+  { name: "SimpleChain", logo: "/logos/simplechain.png", color: "#FF8C00", type: "Testnet", cheapest: false },
 ];
 
 const fadeUp = {
@@ -122,7 +141,7 @@ export default function LandingPage() {
         <m.h1
           {...fadeUp}
           transition={{ duration: 0.5, delay: 0.06 }}
-          className="mt-7 mb-6 text-[32px] sm:text-[72px] font-bold leading-[1.04] tracking-[-0.04em]"
+          className="mt-7 mb-6 text-[clamp(2.5rem,8vw,4.5rem)] font-bold leading-[1.04] tracking-[-0.04em]"
           style={{ color: "var(--text-bright)" }}
         >
           Your daily
@@ -145,12 +164,15 @@ export default function LandingPage() {
           transition={{ duration: 0.5, delay: 0.18 }}
           className="flex flex-col sm:flex-row items-center gap-3"
         >
-          <Link href="/dashboard" className="btn-primary">
+          <Link href="/dashboard" className="btn-primary w-full sm:w-auto">
             Start your streak
             <ArrowRight className="w-4 h-4" />
           </Link>
-          <a href="#how" className="btn-ghost">
+          <a href="#how" className="btn-ghost w-full sm:w-auto">
             How it works
+          </a>
+          <a href="#networks" className="btn-ghost w-full sm:w-auto">
+            View networks
           </a>
         </m.div>
 
@@ -187,21 +209,33 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* The networks — a quiet, static strip */}
-      <section className="relative z-10 py-14 px-6">
+      {/* The networks — Suggestion 4: an informative grid, not a static
+          strip. Real chain colour, Mainnet/Testnet, cheapest highlighted. */}
+      <section id="networks" className="relative z-10 py-14 px-6">
         <div className="max-w-5xl mx-auto">
-          <p className="kicker text-center mb-5">Runs on</p>
-          <ul className="flex flex-wrap items-center justify-center gap-2">
+          <p className="kicker text-center mb-2">Runs on</p>
+          <h2
+            className="text-center text-[20px] sm:text-[32px] font-bold mb-3"
+            style={{ color: "var(--text-bright)" }}
+          >
+            {NETWORK_COUNT} networks, one wallet
+          </h2>
+          <p className="text-center text-[14px] mb-8" style={{ color: "var(--text-secondary)" }}>
+            Arbitrum and OP are the cheapest — a full 6-in-1 run costs well
+            under a cent, so they are the best place to start.
+          </p>
+          <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
             {networks.map((n) => (
               <li
                 key={n.name}
-                className="flex items-center gap-2 px-3 py-2 rounded-[12px] text-[14px] font-medium"
-                style={{
-                  background: "var(--bg-card)",
-                  border: "1px solid var(--border-default)",
-                  color: "var(--text-secondary)",
-                }}
+                className="surface flex items-center gap-2 px-3 py-2.5 text-[14px] font-medium"
+                style={{ color: "var(--text-secondary)" }}
               >
+                <span
+                  className="h-2 w-2 shrink-0 rounded-full"
+                  style={{ background: n.color }}
+                  aria-hidden
+                />
                 <Image
                   src={n.logo}
                   alt=""
@@ -216,6 +250,9 @@ export default function LandingPage() {
                   }}
                 />
                 {n.name}
+                <span className="ml-auto shrink-0 text-[11px]" style={{ color: "var(--text-faint)" }}>
+                  {n.cheapest ? "Cheapest" : n.type}
+                </span>
               </li>
             ))}
           </ul>
