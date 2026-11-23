@@ -35,7 +35,7 @@
 | ✅ **3 daily tasks per network** | Check-in, GM, GN — a new day starts at **00:00 UTC** |
 | 🚀 **6-in-1 runner** | Check-In + GM + GN plus three deploys in one click, ~**69% less gas** than the full-featured contracts |
 | <img src="https://dgdreams.space/genlayer-spinner.svg" alt="" width="18" /> **GenLayer AI contracts** | Python-based Intelligent Contract using `genlayer-js` SDK |
-| 🏆 **Soulbound NFT streaks** | Mint tiered NFTs (Bronze → Legend) for 7+ day streaks |
+| 🏆 **Soulbound NFT streaks** | Mint a tiered NFT (Bronze → Legend) after your first full day — tiers climb with your streak |
 | 📊 **Wallet-owned streaks** | Read from the chain, keyed to your address — never self-reported |
 
 ---
@@ -93,8 +93,8 @@ GenLayer is a non-EVM chain using Python-based Intelligent Contracts with AI-val
 
 Networks with a soulbound NFT contract support minting and upgrading:
 
-- **7-day streak** → Mint Bronze NFT
-- **Streak milestones** → Upgrade through Silver, Gold, Diamond, Legend tiers
+- **1-day streak (first full day, all three missions done)** → Mint Bronze NFT
+- **Streak milestones** → Silver at 7 days, Gold at 30, Diamond at 100, Legend at 365
 - NFTs are soulbound (non-transferable) and track your longest streak
 
 ---
@@ -261,7 +261,6 @@ Intelligent Contracts written in Python and deployed on GenLayer Bradbury testne
 ```python
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 from genlayer import *
-import json
 
 class NikBase(gl.Contract):
     store: str
@@ -277,8 +276,10 @@ class NikBase(gl.Contract):
 
     @gl.public.write
     def dailyCheckIn(self) -> str: ...
+
     @gl.public.write
     def gm(self) -> None: ...
+
     @gl.public.write
     def gn(self) -> None: ...
 ```
@@ -310,8 +311,7 @@ class PriceOracle(gl.Contract):
                 mode="text"
             )
         result = gl.eq_principle.prompt_comparative(
-            fetch,
-            "Two prices are equivalent if they are for the same symbol and the price values differ by less than 1%."
+            fetch, "Two prices are equivalent if they are for the same symbol and the price values differ by less than 1%."
         )
         parsed = json.loads(str(result))
         parsed["updated_at"] = self._now()           # freshness timestamp
@@ -347,7 +347,7 @@ class PredictionMarket(gl.Contract):
     @gl.public.write
     def resolveMarket(self, market_id: int, oracle_addr: str = "") -> str:
         # Direct resolution: validators fetch source_url and reach strict_eq consensus on outcome
-        # Optionally accepts oracle_addr for audit trail
+        # Optionally accepts oracle_addr for audit purposes
 
     @gl.public.write
     def resolveWithOracle(self, market_id: int, oracle_addr: str, symbol: str, max_age: int) -> str:

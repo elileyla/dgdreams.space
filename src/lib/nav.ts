@@ -5,11 +5,12 @@ import {
   FileText,
   HelpCircle,
   Layers,
+  Play,
   Rocket,
   ShieldCheck,
   SquareTerminal,
   Sunrise,
-  Swords,
+  TrendingUp,
   Trophy,
   type LucideIcon,
 } from "lucide-react";
@@ -31,7 +32,6 @@ export interface NavItem {
   blurb?: string;
 }
 
-/** A labeled band of the menu, rendered as one section in rail and sheet. */
 export interface NavGroup {
   /** Tiny caption used in the More sheet ("Tools", "Collect", …). */
   title: string;
@@ -70,6 +70,12 @@ export const TOOL_NAV: NavGroup = {
       blurb: "Missions and swap in one screen",
     },
     {
+      href: "/run",
+      label: "Run",
+      icon: Play,
+      blurb: "Missions and deploys, one card at a time",
+    },
+    {
       href: "/swap",
       label: "Swap",
       icon: ArrowDownUp,
@@ -80,6 +86,12 @@ export const TOOL_NAV: NavGroup = {
       label: "Deploy",
       icon: Rocket,
       blurb: "One-click contract deployment",
+    },
+    {
+      href: "/litvm-market",
+      label: "Predictions",
+      icon: TrendingUp,
+      blurb: "Prediction markets on LiteVM",
     },
   ],
 };
@@ -95,12 +107,6 @@ export const PLAY_NAV: NavGroup = {
       blurb: "The Grand Tour — one free soulbound badge per network",
     },
     {
-      href: "/tournaments",
-      label: "Tournaments",
-      icon: Swords,
-      blurb: "Seasonal competitions and prizes",
-    },
-    {
       href: "/sybil",
       label: "Risk score",
       icon: ShieldCheck,
@@ -108,6 +114,13 @@ export const PLAY_NAV: NavGroup = {
     },
   ],
 };
+
+/**
+ * Tournaments is deliberately not listed here: /tournaments only redirects
+ * to /dashboard — the tournaments lived in the LiteVM Hub, and both are
+ * gone. Listing it promised "seasonal competitions and prizes" that do not
+ * exist. If tournaments ever come back, add the entry here and the page.
+ */
 
 /** Help & legal — quiet reference pages, kept out of the main flow. */
 export const LEGAL_NAV: NavGroup = {
