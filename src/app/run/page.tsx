@@ -121,6 +121,19 @@ export default function RunPage() {
 
   return (
     <AppShell>
+      <div className="mb-6">
+        <h1
+          className="text-[20px] sm:text-[32px] font-bold"
+          style={{ color: "var(--text-bright)" }}
+        >
+          Run
+        </h1>
+        <p className="text-[14px] mt-1 leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+          The same missions and deploys as the ritual page, one card at a time —
+          for when you want to run a single step instead of all six at once.
+        </p>
+      </div>
+
       <NetworkStatusCard />
 
       <div className="mt-6 space-y-4">
