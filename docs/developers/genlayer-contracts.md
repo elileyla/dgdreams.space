@@ -47,8 +47,8 @@ Each action type is only accepted **once per UTC day**, enforced by comparing `_
 
 GenLayer is **not EVM**, so wagmi/viem can't touch it. All interaction goes through the `genlayer-js` SDK:
 
-- Client factory → [`src/lib/genlayer/client.ts`](https://github.com/Misagh95/dgdreams/blob/master/src/lib/genlayer/client.ts)
-- Write/read helpers → [`src/lib/genlayer/tasks.ts`](https://github.com/Misagh95/dgdreams/blob/master/src/lib/genlayer/tasks.ts)
+- Client factory → [`src/lib/genlayer/client.ts`](https://github.com/elileyla/dgdreams.space/blob/master/src/lib/genlayer/client.ts)
+- Write/read helpers → [`src/lib/genlayer/tasks.ts`](https://github.com/elileyla/dgdreams.space/blob/master/src/lib/genlayer/tasks.ts)
 - Provider: MetaMask's `window.ethereum`
 
 ```ts

@@ -551,7 +551,7 @@ export const mainnetNetworks: NetworkConfig[] = [
   makeNetworkConfig(soneiumChain, {
     shortName: "SONEIUM",
     color: "#1B2CFF",
-    logo: "/logos/soneium.svg",
+    logo: "/logos/soneium-128.png",
   }),
   makeNetworkConfig(xrpEvmChain, {
     shortName: "XRP",
@@ -576,7 +576,7 @@ export const testnetNetworks: NetworkConfig[] = [
     shortName: "LIT",
     color: "var(--accent-text)",
     isTestnet: true,
-    logo: "/logos/litvm.png",
+    logo: "/logos/litvm.svg",
     // Arbitrum Orbit sequencer: needs an explicit legacy gasPrice, and a nonce
     // fetched from the RPC because the wallet's local nonce can drift.
     requiresLegacyGas: true,

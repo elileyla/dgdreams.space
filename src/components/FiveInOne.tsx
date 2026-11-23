@@ -188,7 +188,7 @@ export default function FiveInOne(props: FiveInOneProps) {
   // show what THIS wallet already deployed whenever the network (or wallet) changes
   useEffect(() => {
     setResults([]);
-    // restore the persisted阔 redeploy preference on network/wallet change
+    // restore the persisted redeploy preference on network/wallet change
     setRedeploy(() => {
       try {
         return window.localStorage.getItem("dgd-redeploy") !== "0";

@@ -50,7 +50,7 @@ for the first time, start on OP Mainnet.
 
 ## 🔀 Switching networks
 
-All network definitions and `NetworkConfig` live in a single source of truth — [`config/chains.ts`](https://github.com/Misagh95/dgdreams/blob/master/src/config/chains.ts). Adding a new chain is just one entry away.
+All network definitions and `NetworkConfig` live in a single source of truth — [`config/chains.ts`](https://github.com/elileyla/dgdreams.space/blob/master/src/config/chains.ts). Adding a new chain is just one entry away.
 
 ### GenLayer switching
 
@@ -59,7 +59,7 @@ GenLayer isn't EVM, so it needs a manual wallet switch. When you select GenLayer
 ### Arc mainnet endpoints
 
 Arc mainnet (chain `5042`) settles gas in **USDC** and is defined with two RPC endpoints in
-[`config/chains.ts`](https://github.com/Misagh95/dgdreams/blob/master/src/config/chains.ts) — Circle's
+[`config/chains.ts`](https://github.com/elileyla/dgdreams.space/blob/master/src/config/chains.ts) — Circle's
 official node `https://rpc.mainnet.arc.io` first, with the public Arcscan node
 `https://rpc.arc-scan.org` as an automatic fallback for networks where `arc.io` is DNS-filtered.
 Transactions link to the official explorer `https://explorer.arc.io` (an independent

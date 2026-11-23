@@ -17,7 +17,7 @@ hero:
       link: https://dgdreams.space
     - theme: alt
       text: GitHub
-      link: https://github.com/Misagh95/dgdreams
+      link: https://github.com/elileyla/dgdreams.space
 
 features:
   - icon: 🔁

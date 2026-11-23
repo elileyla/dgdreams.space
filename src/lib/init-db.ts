@@ -102,20 +102,42 @@ export async function ensureTables() {
     // Migration for live DBs written while the index was (wallet, chain): keep
     // the best row per wallet, drop the rest, then re-key the index so a wallet
     // can never accumulate one row per network again.
-    await db.execute(sql`
-      DELETE FROM wallet_streaks a
-      USING wallet_streaks b
-      WHERE a.wallet_address = b.wallet_address
-        AND (
-          COALESCE(a.streak, 0) < COALESCE(b.streak, 0)
-          OR (COALESCE(a.streak, 0) = COALESCE(b.streak, 0) AND a.id < b.id)
-        )
+    //
+    // The DELETE is destructive, so it only runs while duplicates actually
+    // exist — on every cold start afterwards this is one cheap EXISTS check
+    // instead of a DELETE against the live table.
+    const dupCheck = await db.execute(sql`
+      SELECT EXISTS (
+        SELECT 1 FROM wallet_streaks a
+        JOIN wallet_streaks b
+          ON a.wallet_address = b.wallet_address
+         AND (
+           COALESCE(a.streak, 0) < COALESCE(b.streak, 0)
+           OR (COALESCE(a.streak, 0) = COALESCE(b.streak, 0) AND a.id < b.id)
+         )
+      ) AS has_duplicates
     `);
+    const dupRow = (dupCheck as { rows?: Array<Record<string, unknown>> }).rows?.[0];
+    const hasDuplicates = dupRow ? Boolean(dupRow.has_duplicates) : false;
+    if (hasDuplicates) {
+      await db.execute(sql`
+        DELETE FROM wallet_streaks a
+        USING wallet_streaks b
+        WHERE a.wallet_address = b.wallet_address
+          AND (
+            COALESCE(a.streak, 0) < COALESCE(b.streak, 0)
+            OR (COALESCE(a.streak, 0) = COALESCE(b.streak, 0) AND a.id < b.id)
+          )
+      `);
+    }
     await db.execute(sql`ALTER TABLE wallet_streaks DROP CONSTRAINT IF EXISTS wallet_streak_chain_idx`);
     await db.execute(sql`DROP INDEX IF EXISTS wallet_streak_chain_idx`);
     await db.execute(sql`CREATE UNIQUE INDEX IF NOT EXISTS wallet_streak_wallet_idx ON wallet_streaks (wallet_address)`);
     initialized = true;
   } catch (e) {
-    initialized = false;
+    // Log loudly: this used to swallow failures, which hid schema problems.
+    // The flag stays false so the next request retries, and the caller
+    // degrades on its own (it has its own try/catch).
+    console.error("ensureTables: schema check failed, will retry next request:", e);
   }
 }

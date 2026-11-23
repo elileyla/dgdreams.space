@@ -220,7 +220,7 @@ one network.
 
 ```bash
 # Clone the repository
-git clone https://github.com/Misagh95/dgdreams.git
+git clone https://github.com/elileyla/dgdreams.space.git
 cd dgdreams
 
 # Install dependencies

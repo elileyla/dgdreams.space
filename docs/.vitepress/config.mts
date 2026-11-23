@@ -49,11 +49,11 @@ export default defineConfig({
         items: [
           { text: 'FAQ', link: '/faq' },
           { text: 'Contributing', link: '/contributing' },
-          { text: 'GitHub', link: 'https://github.com/Misagh95/dgdreams' },
+          { text: 'GitHub', link: 'https://github.com/elileyla/dgdreams.space' },
         ],
       },
     ],
-    socialLinks: [{ icon: 'github', link: 'https://github.com/Misagh95/dgdreams' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/elileyla/dgdreams.space' }],
     search: {
       provider: 'local',
       options: {

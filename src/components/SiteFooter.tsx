@@ -1,16 +1,5 @@
 import type { ReactNode } from "react";
 
-function DocsIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" y1="13" x2="8" y2="13" />
-      <line x1="16" y1="17" x2="8" y2="17" />
-    </svg>
-  );
-}
-
 function XIcon() {
   return (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -44,10 +33,11 @@ interface FooterLink {
 }
 
 const links: FooterLink[] = [
+  // Docs (docs.dgdreams.space) is not deployed yet, so the link is kept out
+  // of the footer until the VitePress site has a live subdomain.
   { label: "BambooDrop", href: "https://bamboo.dgdreams.space", external: true, icon: <LeafIcon /> },
-  { label: "Docs", href: "https://docs.dgdreams.space", external: true, icon: <DocsIcon /> },
   { label: "X / Twitter", href: "https://x.com/DGDreamsapp", external: true, icon: <XIcon /> },
-  { label: "GitHub", href: "https://github.com/Misagh95/dgdreams", external: true, icon: <GithubIcon /> },
+  { label: "GitHub", href: "https://github.com/elileyla/dgdreams.space", external: true, icon: <GithubIcon /> },
 ];
 
 export default function SiteFooter() {

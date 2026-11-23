@@ -53,8 +53,6 @@ export function SwapSection() {
 
   /* Keep refs in sync for use inside async quote callbacks */
   useEffect(() => { sourceIdRef.current = sourceId; }, [sourceId]);
-  /* Keep refs in sync for use inside async quote callbacks */
-  useEffect(() => { sourceIdRef.current = sourceId; }, [sourceId]);
 
   const pickSource = useCallback((id: SwapSourceId) => {
     sourceIdRef.current = id;

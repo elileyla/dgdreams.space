@@ -86,7 +86,9 @@ export async function GET(request: NextRequest) {
     } else {
       const where = isAll ? undefined : eq(litevmStats.chain, chain);
       const [data, agg] = await Promise.all([
-        db.select().from(litevmStats).orderBy(desc(litevmStats.totalPoints)).limit(limit),
+        // Same chain filter as the stats query, so the list and the totals
+        // always describe the same set of wallets.
+        db.select().from(litevmStats).where(where).orderBy(desc(litevmStats.totalPoints)).limit(limit),
         db
           .select({
             totalPlayers: count(),

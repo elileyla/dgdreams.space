@@ -73,13 +73,6 @@ function formatNativePrice(wei: bigint, symbol: string): string {
   return `${s} ${symbol}`;
 }
 
-interface BadgeCardProps {
-  network: NetworkConfig;
-  address: `0x${string}` | undefined;
-  onState: (chainId: number, minted: boolean) => void;
-  onMinted: (network: NetworkConfig, tokenId: number) => void;
-}
-
 /**
  * The after-mint popup: the badge artwork at full size with the edition number
  * stamped on it, so the moment an unlimited mint lands has something to show

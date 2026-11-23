@@ -5,7 +5,7 @@ Get the full stack running locally with GenLayer contracts, the oracle and the p
 ## 1. Clone & install
 
 ```bash
-git clone https://github.com/Misagh95/dgdreams.git
+git clone https://github.com/elileyla/dgdreams.space.git
 cd dgdreams
 npm install
 ```
@@ -91,6 +91,6 @@ node scripts/measure-deploy-cost.mjs
 
 ## 🐍 GenLayer contracts
 
-The Python Intelligent Contracts live in [`genlayer-contracts/`](https://github.com/Misagh95/dgdreams/tree/master/genlayer-contracts). To redeploy after changing a contract, follow the existing Hardhat/GenLayer workflow and update the deployed addresses in `src/config`.
+The Python Intelligent Contracts live in [`genlayer-contracts/`](https://github.com/elileyla/dgdreams.space/tree/master/genlayer-contracts). To redeploy after changing a contract, follow the existing Hardhat/GenLayer workflow and update the deployed addresses in `src/config`.
 
 > ⚠️ GenLayer interactions go through `genlayer-js` — never through wagmi/viem. Keep the EVM and GenLayer code paths separate via `isGenLayer(chainId)`.

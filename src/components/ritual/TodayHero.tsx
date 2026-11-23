@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { AnimatePresence, m,  useReducedMotion } from "framer-motion";
@@ -65,14 +65,23 @@ export default function TodayHero({ variant = "full" }: TodayHeroProps) {
 
   const [selected, setSelected] = useState<MissionId>("gm");
   const [weekLog, setWeekLog] = useState<Record<string, true>>({});
-  const { countdown } = useUtcDay();
+  const { countdown, day } = useUtcDay();
 
   // The week strip is a local record; refresh it whenever a mission lands.
   useEffect(() => {
     setWeekLog(readWeekLog());
   }, [doneCount]);
 
-  const today = useMemo(() => new Date(), []);
+  // The date and greeting are wall-clock values: rendering them from
+  // `new Date()` at module/prerender time bakes the BUILD date into the
+  // static HTML (a hydration mismatch on every load) and keeps showing a
+  // stale greeting until the edge cache expires. Render a placeholder on the
+  // server, the real values only after mount, and re-derive them when the
+  // UTC day flips so a page left open overnight rolls over too.
+  const [today, setToday] = useState<Date | null>(null);
+  useEffect(() => {
+    setToday(new Date());
+  }, [day]);
   const active = missions.find((m) => m.id === selected) ?? missions[0];
   const activeDone = active?.done ?? false;
 
@@ -104,12 +113,12 @@ export default function TodayHero({ variant = "full" }: TodayHeroProps) {
         {/* ── date row ── */}
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div>
-            <p className="kicker">{greeting(today)}</p>
+            <p className="kicker">{today ? greeting(today) : "\u00A0"}</p>
             <h1
               className="mt-1 text-[20px] sm:text-[32px] font-bold"
               style={{ color: "var(--text-bright)" }}
             >
-              {formatToday(today)}
+              {today ? formatToday(today) : "\u00A0"}
             </h1>
           </div>
           <NetworkChip />

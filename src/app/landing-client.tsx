@@ -89,13 +89,13 @@ const networks = [
   { name: "Tempo", logo: "/logos/tempo.png", color: "var(--accent-text)", type: "Mainnet", cheapest: false },
   { name: "Robinhood", logo: "/logos/robinhood.png", color: "#00C805", type: "Mainnet", cheapest: false },
   { name: "Ink", logo: "/logos/ink.svg", color: "#0052FF", type: "Mainnet", cheapest: false },
-  { name: "Soneium", logo: "/logos/soneium.svg", color: "#1B2CFF", type: "Mainnet", cheapest: false },
+  { name: "Soneium", logo: "/logos/soneium-128.png", color: "#1B2CFF", type: "Mainnet", cheapest: false },
   { name: "XRP EVM", logo: "/logos/xrplevm.png", color: "#23292F", type: "Mainnet", cheapest: false },
   { name: "Elysium", logo: "/logos/elysium.svg", color: "#2B8FB6", type: "Mainnet", cheapest: false },
   { name: "Maroo", logo: "/logos/maroo.png", color: "#0096AA", type: "Testnet", cheapest: false },
   { name: "DogeOS", logo: "/logos/dogeos.svg", color: "#E1B000", type: "Testnet", cheapest: false },
   { name: "GIWA Sepolia", logo: "/logos/giwa.png", color: "var(--danger)", type: "Testnet", cheapest: false },
-  { name: "LitVM", logo: "/logos/litvm.png", color: "var(--accent-text)", type: "Testnet", cheapest: false },
+  { name: "LitVM", logo: "/logos/litvm.svg", color: "var(--accent-text)", type: "Testnet", cheapest: false },
   { name: "SimpleChain", logo: "/logos/simplechain.png", color: "#FF8C00", type: "Testnet", cheapest: false },
 ];
 
@@ -466,7 +466,7 @@ export default function LandingPage() {
               FAQ
             </Link>
             <a
-              href="https://github.com/Misagh95/dgdreams"
+              href="https://github.com/elileyla/dgdreams.space"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[var(--text-secondary)] transition-colors"
