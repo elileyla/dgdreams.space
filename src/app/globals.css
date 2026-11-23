@@ -1023,3 +1023,37 @@ h1, h2, h3 {
 @media (prefers-reduced-motion: reduce) {
   .dg-cube-spin, .dg-cube-float { animation: none !important; }
 }
+
+/* ==========================================================================
+   Suggestion 8 — UI redesign: consolidated landing styles
+   --------------------------------------------------------------------------
+   The new landing pieces (StreakPreview, badge ladder, network grid) share
+   these classes so their styling lives in ONE place, using only the tokens
+   already defined above (warm paper, one lime accent, hairline borders).
+   No new colours, no new !important rules.
+
+   Known follow-up, deliberately NOT done in this PR: globals.css defines
+   the light/dark :root tokens more than once (base palette + the
+   "Ritual Theme PHASE A + B" block at the end, which re-defines the same
+   variables with !important overrides). Deleting the duplicates would
+   change the theme cascade site-wide and needs a build + visual check
+   before it is safe. This task forbids running a build/test, so the
+   duplicates are left intact and flagged here instead of silently removed.
+   ========================================================================== */
+
+.streak-preview-card {
+  box-shadow: var(--shadow-md);
+}
+
+.badge-tier-dot {
+  display: block;
+  height: 12px;
+  width: 12px;
+  margin-inline: auto;
+  margin-bottom: 12px;
+  border-radius: 999px;
+}
+
+.badge-tier-dot[data-active="true"] {
+  box-shadow: 0 0 0 4px var(--accent-muted);
+}

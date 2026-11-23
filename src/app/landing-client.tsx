@@ -338,8 +338,9 @@ export default function LandingPage() {
             {badgeTiers.map((b) => (
               <li key={b.name} className="surface p-4 text-center">
                 <span
-                  className="mx-auto mb-3 block h-3 w-3 rounded-full"
-                  style={{ background: b.dot, boxShadow: b.active ? "0 0 0 4px var(--accent-muted)" : "none" }}
+                  className="badge-tier-dot"
+                  data-active={b.active}
+                  style={{ background: b.dot }}
                   aria-hidden
                 />
                 <span className="block font-bold text-[14px]" style={{ color: "var(--text-bright)" }}>

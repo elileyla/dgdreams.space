@@ -56,8 +56,7 @@ export default function StreakPreview() {
 
   return (
     <div
-      className="surface w-full max-w-md p-6 text-left"
-      style={{ boxShadow: "var(--shadow-md)" }}
+      className="surface streak-preview-card w-full max-w-md p-6 text-left"
       aria-label="Streak preview"
     >
       <div className="flex items-center justify-between gap-3">
