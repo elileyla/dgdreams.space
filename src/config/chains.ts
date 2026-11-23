@@ -87,13 +87,13 @@ export const liteforgeChain = /*#__PURE__*/ defineChain({
   name: "LITVM Liteforge",
   nativeCurrency: { decimals: 18, name: "zkLTC", symbol: "zkLTC" },
   rpcUrls: {
-    default: { http: ["https://liteforge.rpc.caldera.xyz/http"] },
-    public: { http: ["https://liteforge.rpc.caldera.xyz/http"] },
+    default: { http: ["https://rpc.testnet.liteforge.zeeve.net"] },
+    public: { http: ["https://rpc.testnet.liteforge.zeeve.net"] },
   },
   blockExplorers: {
     default: {
       name: "Liteforge Explorer",
-      url: "https://liteforge.explorer.caldera.xyz",
+      url: "https://explorer.testnet.liteforge.zeeve.net",
     },
   },
 });
