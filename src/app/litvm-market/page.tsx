@@ -11,11 +11,14 @@ import { logPredictionActivity } from "@/lib/log-activity";
 const LITVM_CHAIN_ID = 4441;
 const PREDICT_AMOUNT = "1000000000000000";
 
+// Price-agnostic presets on purpose: a fixed price level ($75,000 BTC, …)
+// goes stale within weeks and reads as a dead product. These ask about
+// direction against the market open instead, so they stay true.
 const QUICK_QUESTIONS = [
-  "Will BTC exceed $75,000 by end of week?",
-  "Will ETH break $4,000 by end of week?",
-  "Will SOL stay above $150 by end of day?",
-  "Will ADA reach $1 by end of month?",
+  "Will BTC close the week higher than it opened?",
+  "Will ETH set a new weekly high by end of week?",
+  "Will SOL close the day higher than it opened?",
+  "Will ADA set a new monthly high by end of month?",
 ];
 
 export default function LitVMMarketPage() {
@@ -141,7 +144,7 @@ export default function LitVMMarketPage() {
           <div className="rounded-xl p-6 mb-6 space-y-3" style={{ background: "var(--bg-strong)", border: "1px solid var(--border)" }}>
             <div>
               <label className="text-[12px]" style={{ color: "var(--text-quaternary)" }}>Question</label>
-              <textarea value={createQuestion} onChange={(e) => setCreateQuestion(e.target.value)} rows={2} placeholder='Will BTC exceed $75,000 by end of week?' className="w-full mt-1 px-3 py-2 rounded-lg text-xs outline-none resize-none" style={{ background: "var(--bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }} />
+              <textarea value={createQuestion} onChange={(e) => setCreateQuestion(e.target.value)} rows={2} placeholder='Will BTC close the week higher than it opened?' className="w-full mt-1 px-3 py-2 rounded-lg text-xs outline-none resize-none" style={{ background: "var(--bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }} />
             </div>
             <div className="flex items-center gap-3">
               <div className="flex-1">
@@ -156,7 +159,7 @@ export default function LitVMMarketPage() {
                   <option value="720">30 days</option>
                 </select>
               </div>
-              <button onClick={() => handleCreate(createQuestion, createHours)} disabled={!createQuestion.trim()} className="mt-5 px-6 py-2.5 rounded-xl text-xs transition-all hover:opacity-80 disabled:opacity-40" style={{ background: "var(--accent)", color: "#fff", border: "none" }}>
+              <button onClick={() => handleCreate(createQuestion, createHours)} disabled={!createQuestion.trim()} className="mt-5 px-6 py-2.5 rounded-xl text-xs transition-all hover:opacity-80 disabled:opacity-40" style={{ background: "var(--accent)", color: "#12100e", border: "none" }}>
                 Create Market
               </button>
             </div>
@@ -223,7 +226,7 @@ export default function LitVMMarketPage() {
                     <div className="flex gap-2">
                       {!m.resolved && (
                         isExpired ? (
-                          <button onClick={() => handleResolve(m.id, true, m.question)} className="flex-1 py-2 rounded-lg text-xs font-semibold transition-all hover:opacity-80" style={{ background: "var(--accent)", color: "#fff", border: "none" }}>
+                          <button onClick={() => handleResolve(m.id, true, m.question)} className="flex-1 py-2 rounded-lg text-xs font-semibold transition-all hover:opacity-80" style={{ background: "var(--accent)", color: "#12100e", border: "none" }}>
                             Resolve YES
                           </button>
                         ) : (
