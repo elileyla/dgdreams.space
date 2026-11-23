@@ -34,7 +34,7 @@ const features = [
   {
     icon: Flame,
     title: "Streaks that pay off",
-    desc: "Keep a daily streak. Hit seven days to mint a soulbound badge that climbs from Bronze to Legend.",
+    desc: "Keep a daily streak. Finish all three missions in a day to mint a soulbound badge — Bronze from day one — that climbs to Legend as the streak grows.",
     span: "",
   },
   {
@@ -46,11 +46,11 @@ const features = [
 ];
 
 const badgeTiers = [
-  { name: "Bronze", note: "7-day streak", dot: "#b07845", active: true },
-  { name: "Silver", note: "Longer streak", dot: "#9aa3ad", active: false },
-  { name: "Gold", note: "Longer streak", dot: "#d4a017", active: false },
-  { name: "Diamond", note: "Longer streak", dot: "#7fb3e0", active: false },
-  { name: "Legend", note: "Longest streak", dot: "#c6f24e", active: false },
+  { name: "Bronze", note: "Day 1 — first full day", dot: "#b07845", active: true },
+  { name: "Silver", note: "7-day streak", dot: "#9aa3ad", active: false },
+  { name: "Gold", note: "30-day streak", dot: "#d4a017", active: false },
+  { name: "Diamond", note: "100-day streak", dot: "#7fb3e0", active: false },
+  { name: "Legend", note: "365-day streak", dot: "#c6f24e", active: false },
 ];
 
 const steps = [
@@ -185,7 +185,7 @@ export default function LandingPage() {
           {[
             { value: String(NETWORK_COUNT), label: "Networks" },
             { value: "3", label: "Daily rituals" },
-            { value: "7d", label: "To first badge" },
+            { value: "1d", label: "To first badge" },
           ].map((s) => (
             <div key={s.label} className="surface text-center py-4 px-2">
               <div
@@ -317,8 +317,10 @@ export default function LandingPage() {
       </section>
 
       {/* Badge ladder — Suggestion 3: Bronze to Legend, in order.
-          Only the Bronze threshold (7 days) is stated in the README;
-          the rest are shown as longer-streak milestones, no invented days. */}
+          Thresholds are the contract's (contracts/SoulboundStreak.sol
+          _tierFor): Bronze from a 1-day streak, Silver 7, Gold 30,
+          Diamond 100, Legend 365. Mint needs all three missions done
+          on the day. */}
       <section className="relative z-10 py-14 px-6" aria-label="Badge ladder">
         <div className="max-w-5xl mx-auto">
           <m.div {...fadeUp} transition={{ duration: 0.5 }} className="text-center mb-8">
@@ -330,7 +332,8 @@ export default function LandingPage() {
               Bronze to Legend
             </h2>
             <p className="text-[16px]" style={{ color: "var(--text-secondary)" }}>
-              Seven days mints Bronze. Keep the streak and climb — badges are
+              One full day mints Bronze. Keep the streak and climb — Silver
+              at 7 days, Gold at 30, Diamond at 100, Legend at 365. Badges are
               soulbound, so they stay with your wallet.
             </p>
           </m.div>

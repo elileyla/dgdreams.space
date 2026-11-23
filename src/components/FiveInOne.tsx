@@ -199,20 +199,34 @@ export default function FiveInOne(props: FiveInOneProps) {
     setDeployed(target ? refreshFromStore(target.id, account) : {});
   }, [target?.id, account, refreshFromStore]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    (async () => {
-      const map: Record<string, DeployArtifact> = {};
-      for (const a of ARTIFACTS) {
-        try {
-          const res = await fetch(`/contracts/${a.key}.json`);
-          if (res.ok) map[a.key] = (await res.json()) as DeployArtifact;
-        } catch {
-          /* artifact unavailable */
-        }
+  // The three deploy artifacts are static JSON under /contracts/*.json and
+  // they exist in the repo, so a failed load is a serving problem (stale
+  // deploy, a blocked request) rather than missing code. The old code
+  // swallowed the failure silently and left a dead button with no way to
+  // try again; the fetch is extracted so the user can retry it, and the
+  // first failure is recorded instead of hidden.
+  const [artifactError, setArtifactError] = useState<string | null>(null);
+  const [loadAttempt, setLoadAttempt] = useState(0);
+
+  const loadArtifacts = useCallback(async () => {
+    const map: Record<string, DeployArtifact> = {};
+    const failed: string[] = [];
+    for (const a of ARTIFACTS) {
+      try {
+        const res = await fetch(`/contracts/${a.key}.json`);
+        if (res.ok) map[a.key] = (await res.json()) as DeployArtifact;
+        else failed.push(`${a.key} (HTTP ${res.status})`);
+      } catch {
+        failed.push(a.key);
       }
-      setArtifacts(map);
-    })();
+    }
+    setArtifacts(map);
+    setArtifactError(failed.length > 0 ? failed.join(", ") : null);
   }, []);
+
+  useEffect(() => {
+    loadArtifacts();
+  }, [loadArtifacts, loadAttempt]);
 
   const nikBase = target ? NIKBASE_CONTRACTS[target.id] : undefined;
   /**
@@ -315,7 +329,8 @@ export default function FiveInOne(props: FiveInOneProps) {
   const loaded = Object.keys(artifacts).length === ARTIFACTS.length;
   // Show why the run is blocked instead of leaving a dead button. A failed
   // artifact fetch used to disable the button with no explanation, which reads
-  // as "the feature is broken" rather than "a CDN file is missing".
+  // as "the feature is broken" rather than "a file failed to load" — and
+  // there was no way to try again.
   const missingArtifacts = ARTIFACTS.filter((a) => !artifacts[a.key]).map((a) => a.key);
   const blockedByArtifacts = missingArtifacts.length > 0;
   const canRun = isConnected && !!target && !!nikBase && !running && loaded;
@@ -376,10 +391,21 @@ export default function FiveInOne(props: FiveInOneProps) {
       </div>
 
       {blockedByArtifacts && (
-        <p className="text-[14px] mt-4" style={{ color: "var(--warning)" }}>
-          The deploy artifacts ({missingArtifacts.join(", ")}) could not be loaded, so
-          the run is unavailable for now.
-        </p>
+        <div className="mt-4 flex items-start justify-between gap-4 flex-wrap">
+          <p className="text-[14px] flex-1 min-w-[220px]" style={{ color: "var(--warning)" }}>
+            The deploy artifacts ({missingArtifacts.join(", ")}) could not be loaded
+            {artifactError ? ` (${artifactError})` : ""}, so the run is unavailable
+            for now. The files ship with the site, so this is usually a stale
+            deploy or a blocked request, not a missing contract.
+          </p>
+          <button
+            type="button"
+            onClick={() => setLoadAttempt((n) => n + 1)}
+            className="btn-ghost shrink-0"
+          >
+            Retry loading
+          </button>
+        </div>
       )}
 
       {isConnected && !nikBase && (

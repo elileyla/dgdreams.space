@@ -31,9 +31,9 @@ const faqs = [
     icon: Star,
     color: "var(--warning)",
     items: [
-      { q: "How do I earn points?", a: "Points are earned by completing on-chain actions: daily tasks (+10 pts each) and maintaining streaks (+5 pts per day)." },
-      { q: "What is the streak system?", a: "Your streak tracks consecutive days of on-chain activity. A 7-day streak unlocks soulbound NFT minting. Streaks are tracked per wallet on the NikBase contract, and the day rolls over at 00:00 UTC." },
-      { q: "How are points calculated?", a: "Points combine task actions and a daily streak bonus. Your totals are ranked on the Leaderboard page." },
+      { q: "How do I earn points?", a: "Each day's three missions are worth points: Check-in 15, GM 25 and GN 25 — 65 points for a full day. Streaks don't add points; they climb your soulbound badge tier (Bronze from day 1, Silver at 7 days, Gold at 30, Diamond at 100, Legend at 365)." },
+      { q: "What is the streak system?", a: "Your streak tracks consecutive days of on-chain activity. Finish all three missions in a day and your streak grows by one. A 1-day streak mints the Bronze soulbound badge; the tier climbs with the streak — Silver at 7 days, Gold at 30, Diamond at 100, Legend at 365. Streaks are tracked per wallet on the NikBase contract, and the day rolls over at 00:00 UTC." },
+      { q: "How are points calculated?", a: "Points are the three missions added up — Check-in 15, GM 25, GN 25, 65 for a full day. Your totals are ranked on the Leaderboard page." },
     ],
   },
   {
@@ -42,7 +42,7 @@ const faqs = [
     color: "var(--accent-text)",
     items: [
       { q: "What are daily tasks?", a: "Daily tasks are on-chain actions you perform on supported networks. Each network has 3 tasks per day: Daily Check-In, GM and GN. Complete all 3 to mark the day as done. Tasks are interactions with NikBase contracts." },
-      { q: "How do I start a task?", a: "Go to /tasks, select a network, and click 'Start Daily Tasks'. The task panel will guide you through each action. You must be connected to the correct network." },
+      { q: "How do I start a task?", a: "Go to /tasks, pick a network in the hero, and press Run on each mission — Check in, GM, then GN. You must be connected to the correct network." },
       { q: "What happens if I switch networks?", a: "You can switch networks at any time. Your progress is saved per network. Each network has its own 3-task counter and streak." },
     ],
   },
@@ -62,13 +62,15 @@ const faqs = [
     color: "var(--text-tertiary)",
     items: [
       { q: "How do I add a custom network?", a: "You can configure custom RPC URLs and chain IDs through your wallet provider. Popular EVM networks are supported out of the box." },
-      { q: "Which network has the lowest gas?", a: "Base and most L2s (HyperEVM, Unichain, Tempo) have sub-cent gas fees. Arc mainnet settles gas in USDC, so fees stay dollar-denominated. Ethereum mainnet gas varies based on network congestion." },
+      { q: "Which network has the lowest gas?", a: "Arbitrum and OP Mainnet are the cheapest — a full 6-in-1 run costs well under a cent there. Base and most L2s (HyperEVM, Unichain, Tempo) also have sub-cent gas fees. Arc mainnet settles gas in USDC, so fees stay dollar-denominated. Ethereum mainnet gas varies based on network congestion." },
     ],
   },
 ];
 
 export default function FaqPage() {
-  const [openCategory, setOpenCategory] = useState<string | null>(null);
+  // The first category starts open so the page is not an empty list of
+  // headers on first paint — and so a plain crawl sees actual answers.
+  const [openCategory, setOpenCategory] = useState<string | null>("Getting Started");
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
   return (
@@ -82,7 +84,7 @@ export default function FaqPage() {
             <div key={cat.category} className="glass-panel rounded-xl overflow-hidden">
               <button
                 onClick={() => setOpenCategory(isOpen ? null : cat.category)}
-                className="w-full flex items-center gap-3 p-4 hover:bg-[rgba(0,212,255,0.04)] transition-colors"
+                className="w-full flex items-center gap-3 p-4 hover:bg-[var(--bg-subtle)] transition-colors"
               >
                 <div className="w-9 h-9 rounded-xl flex items-center justify-center"
                   style={{ background: `${cat.color}18`, border: `1px solid ${cat.color}33` }}>
@@ -109,7 +111,7 @@ export default function FaqPage() {
                         const qOpen = openQuestion === item.q;
                         return (
                           <div key={item.q} className="rounded-xl overflow-hidden"
-                            style={{ background: "rgba(6,13,26,0.6)", border: "1px solid rgba(26,58,92,0.3)" }}>
+                            style={{ background: "var(--bg-card)", border: "1px solid var(--border-default)" }}>
                             <button
                               onClick={() => setOpenQuestion(qOpen ? null : item.q)}
                               className="w-full flex items-center justify-between p-3 text-left"

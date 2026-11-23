@@ -6,6 +6,13 @@ import type { NetworkConfig } from "@/config/chains";
  * A badge is minted after all three daily missions land on a network, and it
  * upgrades as the streak grows. The addresses live here so the "Today" page
  * and the ritual page read the same contract.
+ *
+ * Mint rule and tier thresholds match the contract
+ * (contracts/SoulboundStreak.sol): mint needs a live streak of at least 1
+ * day plus all 3 of today's missions (MIN_TODAY_ACTIONS = 3); the tier is
+ * read from the streak — Bronze is the tier for any streak of 1–6 days,
+ * Silver starts at 7, Gold at 30, Diamond at 100, Legend at 365. The old
+ * Bronze threshold of 3 days contradicted the contract, so it is 1 here.
  */
 
 export const SOULBOUND_ADDR: Record<number, `0x${string}` | ""> = {
@@ -41,7 +48,7 @@ export interface BadgeTier {
 }
 
 export const BADGE_TIERS: BadgeTier[] = [
-  { label: "Bronze", threshold: 3 },
+  { label: "Bronze", threshold: 1 },
   { label: "Silver", threshold: 7 },
   { label: "Gold", threshold: 30 },
   { label: "Diamond", threshold: 100 },

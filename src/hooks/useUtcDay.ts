@@ -19,7 +19,10 @@ import {
  */
 export function useUtcDay(onNewDay?: (newDay: number) => void) {
   const [day, setDay] = useState(() => utcDayNumber());
-  const [countdown, setCountdown] = useState("0m 0s");
+  // "—" until mounted: the old initial value of "0m 0s" was a plausible-looking
+  // but wrong countdown on the first server render, and it briefly claimed
+  // the day was already over.
+  const [countdown, setCountdown] = useState("—");
   // kept in a ref so the timer never needs to be rebuilt when a callback changes
   const cb = useRef(onNewDay);
   cb.current = onNewDay;
