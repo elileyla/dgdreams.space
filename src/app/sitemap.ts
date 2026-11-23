@@ -15,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sybil",
     "/swap",
     "/deploy",
-    "/litvm-market",
     "/faq",
     "/terms",
     "/license",

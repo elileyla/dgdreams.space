@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   SquareTerminal,
   Sunrise,
-  TrendingUp,
   Trophy,
   type LucideIcon,
 } from "lucide-react";
@@ -20,7 +19,7 @@ import {
  *
  * Three destinations in the rail (the daily loop), then everything else
  * grouped so the rail reads in labeled bands instead of one flat list of
- * twelve icons. The groups drive both the desktop rail and the "More" sheet,
+ * twelve icons. The groups drive both the desktop rail and the \"More\" sheet,
  * so the menu is written once and stays in sync.
  */
 
@@ -28,12 +27,12 @@ export interface NavItem {
   href: string;
   label: string;
   icon: LucideIcon;
-  /** short description, used in the "More" sheet */
+  /** short description, used in the \"More\" sheet */
   blurb?: string;
 }
 
 export interface NavGroup {
-  /** Tiny caption used in the More sheet ("Tools", "Collect", …). */
+  /** Tiny caption used in the More sheet (\"Tools\", \"Collect\", …). */
   title: string;
   items: NavItem[];
 }
@@ -87,14 +86,14 @@ export const TOOL_NAV: NavGroup = {
       icon: Rocket,
       blurb: "One-click contract deployment",
     },
-    {
-      href: "/litvm-market",
-      label: "Predictions",
-      icon: TrendingUp,
-      blurb: "Prediction markets on LiteVM",
-    },
   ],
 };
+
+/**
+ * Predictions is deliberately not listed here: /litvm-market only redirects
+ * to /dashboard — the prediction markets on LiteVM were removed. If they
+ * ever come back, add the entry here and restore the page.
+ */
 
 /** Collect — the parts of the product you build up over time. */
 export const PLAY_NAV: NavGroup = {
@@ -118,7 +117,7 @@ export const PLAY_NAV: NavGroup = {
 /**
  * Tournaments is deliberately not listed here: /tournaments only redirects
  * to /dashboard — the tournaments lived in the LiteVM Hub, and both are
- * gone. Listing it promised "seasonal competitions and prizes" that do not
+ * gone. Listing it promised \"seasonal competitions and prizes\" that do not
  * exist. If tournaments ever come back, add the entry here and the page.
  */
 
@@ -150,6 +149,6 @@ export const LEGAL_NAV: NavGroup = {
 /** Everything that is not the daily loop, in reading order. */
 export const MORE_GROUPS: NavGroup[] = [TOOL_NAV, PLAY_NAV, LEGAL_NAV];
 
-/** Flat list of the same items — kept for the "More" sheet and any single
- *  "is this link anywhere?" checks. */
+/** Flat list of the same items — kept for the \"More\" sheet and any single
+ *  \"is this link anywhere?\" checks. */
 export const MORE_NAV: NavItem[] = MORE_GROUPS.flatMap((g) => g.items);
