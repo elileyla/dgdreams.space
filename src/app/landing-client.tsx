@@ -5,6 +5,7 @@ import Image from "next/image";
 import { m, useReducedMotion } from "framer-motion";
 import SiteHeader from "@/components/site/SiteHeader";
 import { NETWORK_COUNT } from "@/config/chains";
+import StreakPreview from "@/components/landing/StreakPreview";
 import {
   Globe,
   Flame,
@@ -35,6 +36,14 @@ const features = [
     desc: "Keep a daily streak. Hit seven days to mint a soulbound badge that climbs from Bronze to Legend.",
     span: "",
   },
+];
+
+const badgeTiers = [
+  { name: "Bronze", note: "7-day streak", dot: "#b07845", active: true },
+  { name: "Silver", note: "Longer streak", dot: "#9aa3ad", active: false },
+  { name: "Gold", note: "Longer streak", dot: "#d4a017", active: false },
+  { name: "Diamond", note: "Longer streak", dot: "#7fb3e0", active: false },
+  { name: "Legend", note: "Longest streak", dot: "#c6f24e", active: false },
 ];
 
 const steps = [
@@ -86,8 +95,11 @@ export default function LandingPage() {
     >
       <SiteHeader />
 
-      {/* Hero */}
-      <section className="relative z-10 flex flex-col items-center text-center px-6 pt-16 sm:pt-24 pb-16 max-w-4xl mx-auto">
+      {/* Hero — Suggestion 2: two columns on desktop, copy left, live
+          streak preview right, instead of centred text only. */}
+      <section className="relative z-10 px-6 pt-16 sm:pt-24 pb-16">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
         <m.div {...fadeUp} transition={{ duration: 0.5 }}>
           <span
             className="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 rounded-full text-[14px] font-medium"
@@ -164,6 +176,15 @@ export default function LandingPage() {
             </div>
           ))}
         </m.div>
+          </div>
+          <m.div
+            {...fadeUp}
+            transition={{ duration: 0.5, delay: 0.24 }}
+            className="flex justify-center lg:justify-end"
+          >
+            <StreakPreview />
+          </m.div>
+        </div>
       </section>
 
       {/* The networks — a quiet, static strip */}
@@ -255,6 +276,44 @@ export default function LandingPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Badge ladder — Suggestion 3: Bronze to Legend, in order.
+          Only the Bronze threshold (7 days) is stated in the README;
+          the rest are shown as longer-streak milestones, no invented days. */}
+      <section className="relative z-10 py-14 px-6" aria-label="Badge ladder">
+        <div className="max-w-5xl mx-auto">
+          <m.div {...fadeUp} transition={{ duration: 0.5 }} className="text-center mb-8">
+            <p className="kicker mb-3">Soulbound badges</p>
+            <h2
+              className="text-[20px] sm:text-[32px] font-bold mb-3"
+              style={{ color: "var(--text-bright)" }}
+            >
+              Bronze to Legend
+            </h2>
+            <p className="text-[16px]" style={{ color: "var(--text-secondary)" }}>
+              Seven days mints Bronze. Keep the streak and climb — badges are
+              soulbound, so they stay with your wallet.
+            </p>
+          </m.div>
+          <ol className="grid grid-cols-2 gap-3 sm:grid-cols-5 sm:gap-4">
+            {badgeTiers.map((b) => (
+              <li key={b.name} className="surface p-4 text-center">
+                <span
+                  className="mx-auto mb-3 block h-3 w-3 rounded-full"
+                  style={{ background: b.dot, boxShadow: b.active ? "0 0 0 4px var(--accent-muted)" : "none" }}
+                  aria-hidden
+                />
+                <span className="block font-bold text-[14px]" style={{ color: "var(--text-bright)" }}>
+                  {b.name}
+                </span>
+                <span className="mt-1 block text-[12px]" style={{ color: "var(--text-tertiary)" }}>
+                  {b.note}
+                </span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
