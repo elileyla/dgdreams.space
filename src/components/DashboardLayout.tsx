@@ -19,9 +19,10 @@ interface DashboardLayoutProps {
 /**
  * The old layout wrapper.
  *
- * Everything now goes through AppShell: a 64px icon rail on the left, the
- * page in the middle, and the score rail on the right. This component stays
- * so the pages that still call it do not all have to change at once.
+ * Everything now goes through AppShell: a labeled, collapsible sidebar on
+ * the left, the page in the middle, and the score rail on the right. This
+ * component stays so the pages that still call it do not all have to change
+ * at once.
  */
 export default function DashboardLayout({
   children,
