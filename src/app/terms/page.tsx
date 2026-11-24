@@ -46,8 +46,9 @@ const sections = [
 export default function TermsPage() {
   return (
     <DashboardLayout title="Terms of Service" subtitle="// legal & usage agreement">
+      <h1 className="sr-only">Terms of Service</h1>
       <div className="max-w-3xl mx-auto space-y-4">
-        <p className="text-xs text-[var(--text-tertiary)] mb-6">
+        <p className="text-xs text-[var(--text-secondary)] mb-6">
           Last updated: July 2026. By using DGDreams, you agree to the following terms.
         </p>
 
@@ -69,7 +70,7 @@ export default function TermsPage() {
                 </div>
                 <h2 className="text-sm font-semibold text-[var(--text-bright)]">{section.title}</h2>
               </div>
-              <p className="text-xs text-[var(--text-tertiary)] leading-relaxed pl-11">
+              <p className="text-xs text-[var(--text-secondary)] leading-relaxed pl-11">
                 {section.content}
               </p>
             </m.div>

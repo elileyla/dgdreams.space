@@ -24,7 +24,7 @@ export default function LicensePage() {
                 <Scale className="w-5 h-5 text-[var(--accent-text)]" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-[var(--text-bright)]">MIT License</h2>
+                <h1 className="text-base font-bold text-[var(--text-bright)]">MIT License</h1>
                 <p className="text-[12px] text-[var(--text-tertiary)]">Copyright (c) 2026 DGDreams</p>
               </div>
             </div>
@@ -72,7 +72,7 @@ SOFTWARE.`}
                   <Icon className="w-4 h-4" style={{ color: item.color }} />
                 </div>
                 <h3 className="text-sm font-semibold text-[var(--text-bright)] mb-1">{item.title}</h3>
-                <p className="text-xs text-[var(--text-tertiary)] leading-relaxed">{item.desc}</p>
+                <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{item.desc}</p>
               </m.div>
             );
           })}
@@ -91,7 +91,7 @@ SOFTWARE.`}
             </div>
             <h2 className="text-sm font-semibold text-[var(--text-bright)]">Smart Contracts</h2>
           </div>
-          <p className="text-xs text-[var(--text-tertiary)] leading-relaxed">
+          <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
             The smart contracts used by DGDreams (NikBase, Soulbound NFT) are open-source
             and verified on their respective block explorers. They are licensed under MIT unless
             otherwise specified. Contract source code is available on GitHub for audit and review.

@@ -75,6 +75,7 @@ export default function FaqPage() {
 
   return (
     <DashboardLayout title="FAQ" subtitle="// frequently asked questions">
+      <h1 className="sr-only">FAQ</h1>
       <div className="max-w-3xl mx-auto space-y-4">
         {faqs.map((cat) => {
           const Icon = cat.icon;
