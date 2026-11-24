@@ -124,7 +124,7 @@ export default function StreakPreview() {
               )}
               {r.label}
             </span>
-            <span className="font-mono text-[12px]" style={{ color: "var(--text-tertiary)" }}>
+            <span className="font-mono text-[12px]" style={{ color: "var(--text-secondary)" }}>
               {r.done ? "Done" : "To do"}
             </span>
           </li>
@@ -141,7 +141,7 @@ export default function StreakPreview() {
         <span className="font-mono">{done}/3 done</span>
       </div>
 
-      <p className="mt-4 text-[12px] leading-relaxed" style={{ color: "var(--text-tertiary)" }}>
+      <p className="mt-4 text-[12px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
         Preview — connect your wallet on the dashboard for your live streak.
       </p>
       <Link href="/dashboard" className="btn-primary mt-3 w-full">

@@ -30,7 +30,7 @@ export default function LicensePage() {
             </div>
 
             <div className="p-4 rounded-xl text-xs leading-relaxed whitespace-pre-line"
-              style={{ background: "rgba(6,13,26,0.8)", border: "1px solid rgba(26,58,92,0.4)", color: "var(--text-secondary)" }}>
+              style={{ background: "rgba(6,13,26,0.8)", border: "1px solid rgba(26,58,92,0.4)", color: "#e5e7eb" }}>
 {`Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
