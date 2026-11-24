@@ -25,7 +25,7 @@ export default function LicensePage() {
               </div>
               <div>
                 <h1 className="text-base font-bold text-[var(--text-bright)]">MIT License</h1>
-                <p className="text-[12px] text-[var(--text-tertiary)]">Copyright (c) 2026 DGDreams</p>
+                <p className="text-[12px] text-[var(--text-secondary)]">Copyright (c) 2026 DGDreams</p>
               </div>
             </div>
 
@@ -96,7 +96,7 @@ SOFTWARE.`}
             and verified on their respective block explorers. They are licensed under MIT unless
             otherwise specified. Contract source code is available on GitHub for audit and review.
           </p>
-          <div className="mt-3 flex items-center gap-2 text-[12px] text-[var(--text-tertiary)]">
+          <div className="mt-3 flex items-center gap-2 text-[12px] text-[var(--text-secondary)]">
             <Eye className="w-3 h-3" />
             <span>Always verify contract addresses match the official ones listed on DGDreams.</span>
           </div>

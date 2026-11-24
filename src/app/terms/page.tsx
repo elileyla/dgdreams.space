@@ -77,7 +77,7 @@ export default function TermsPage() {
           );
         })}
 
-        <p className="text-xs text-[var(--text-faint)] text-center pt-4">
+        <p className="text-xs text-[var(--text-secondary)] text-center pt-4">
           For questions, contact us through the official DGDreams channels.
         </p>
       </div>
