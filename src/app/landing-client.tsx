@@ -285,8 +285,7 @@ export default function LandingPage() {
                 <m.div
                   key={f.title}
                   initial={reduced ? undefined : { opacity: 0, y: 16 }}
-                  whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
+                  animate={reduced ? undefined : { opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: i * 0.05 }}
                   className={`surface p-6 ${f.span}`}
                 >
@@ -381,8 +380,7 @@ export default function LandingPage() {
                 <m.div
                   key={s.title}
                   initial={reduced ? undefined : { opacity: 0, y: 16 }}
-                  whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
+                  animate={reduced ? undefined : { opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: i * 0.08 }}
                   className="surface p-6 text-left"
                 >
@@ -422,8 +420,7 @@ export default function LandingPage() {
       <section className="relative z-10 py-16 px-6">
         <m.div
           initial={reduced ? undefined : { opacity: 0, y: 16 }}
-          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={reduced ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
           className="max-w-3xl mx-auto text-center surface rounded-[24px] p-10 sm:p-14"
         >
