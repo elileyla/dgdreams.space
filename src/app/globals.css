@@ -54,8 +54,8 @@
   --text-bright: #12100e;
   --text-primary: #211e1a;
   --text-secondary: #6b655d;
-  --text-tertiary: #8c8579;
-  --text-faint: #ada69a;
+  --text-tertiary: #6b655d;
+  --text-faint: #6f6960;
 
   /* the accent — fills, highlights, dots. never small text. */
   --accent: #c6f24e;
