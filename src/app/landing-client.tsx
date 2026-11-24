@@ -250,7 +250,10 @@ export default function LandingPage() {
                   }}
                 />
                 {n.name}
-                <span className="ml-auto shrink-0 text-[11px]" style={{ color: "var(--text-faint)" }}>
+                <span
+                  className="ml-auto shrink-0 text-[11px]"
+                  style={{ color: n.cheapest ? "var(--text-secondary)" : "var(--text-faint)" }}
+                >
                   {n.cheapest ? "Cheapest" : n.type}
                 </span>
               </li>
