@@ -87,7 +87,7 @@ export default function SybilRiskPage() {
             <div className="flex-1 min-w-0">
               <h1 className="text-base font-semibold text-[var(--text-bright)]">Sybil Risk Score</h1>
               <p className="text-[12px] text-[var(--text-tertiary)]">
-                {"// one person, many wallets, farming the same rewards"}
+                One person, many wallets, farming the same rewards
               </p>
             </div>
             {isConnected && (
